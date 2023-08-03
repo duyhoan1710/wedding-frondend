@@ -10,11 +10,14 @@ module.exports = {
     extend: {
       colors: {
         "pink-8": "rgba(241, 78, 149, 0.8)",
+        pink: "#f14e95",
+        gray: "#828282",
       },
       fontFamily: {
         display: ["var(--font-sf)", "system-ui", "sans-serif"],
-        default: ["var(--font-inter)", "system-ui", "sans-serif"],
+        default: ["var(--font-workSans)", "system-ui", "sans-serif"],
         sacra: ["var(--font-sacra)", "system-ui", "sans-serif"],
+        workSans: ["var(--font-workSans)", "system-ui", "sans-serif"],
       },
       animation: {
         // Fade up and down

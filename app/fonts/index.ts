@@ -14,3 +14,7 @@ export const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
 });
+export const workSans = localFont({
+  src: "./WorkSans-VariableFont_wght.ttf",
+  variable: "--font-workSans",
+});
