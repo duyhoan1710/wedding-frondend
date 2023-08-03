@@ -6,6 +6,10 @@ export const sfPro = localFont({
   variable: "--font-sf",
 });
 
+export const sacra = localFont({
+  src: "./Sacramento-Regular.ttf",
+  variable: "--font-sacra",
+});
 export const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],

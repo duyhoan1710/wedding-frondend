@@ -8,9 +8,13 @@ module.exports = {
   },
   theme: {
     extend: {
+      colors: {
+        "pink-8": "rgba(241, 78, 149, 0.8)",
+      },
       fontFamily: {
         display: ["var(--font-sf)", "system-ui", "sans-serif"],
         default: ["var(--font-inter)", "system-ui", "sans-serif"],
+        sacra: ["var(--font-sacra)", "system-ui", "sans-serif"],
       },
       animation: {
         // Fade up and down
@@ -19,6 +23,7 @@ module.exports = {
         // Tooltip
         "slide-up-fade": "slide-up-fade 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
         "slide-down-fade": "slide-down-fade 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
+        "s-pulse": "s-pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite",
       },
       keyframes: {
         // Fade up and down
@@ -56,6 +61,17 @@ module.exports = {
         "slide-down-fade": {
           "0%": { opacity: 0, transform: "translateY(-6px)" },
           "100%": { opacity: 1, transform: "translateY(0)" },
+        },
+        "s-pulse": {
+          "0%": {
+            transform: "scale(0.95)",
+          },
+          "50%": {
+            transform: "scale(1)",
+          },
+          "100%": {
+            transform: "scale(0.95)",
+          },
         },
       },
     },
