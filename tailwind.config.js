@@ -10,8 +10,10 @@ module.exports = {
     extend: {
       colors: {
         "pink-8": "rgba(241, 78, 149, 0.8)",
+        "black-1": "rgba(255, 255, 255, 0.1)",
         pink: "#f14e95",
         gray: "#828282",
+        "dark-red": "rgba(120, 0, 20, 0.8)",
       },
       fontFamily: {
         display: ["var(--font-sf)", "system-ui", "sans-serif"],
