@@ -13,6 +13,9 @@ module.exports = {
         "black-1": "rgba(255, 255, 255, 0.1)",
         pink: "#f14e95",
         gray: "#828282",
+        "gray-c": "#ccc",
+        "gray-4": "rgba(0, 0, 0, 0.04)",
+        "gray-d4": "#d4d4d4",
         "dark-red": "rgba(120, 0, 20, 0.8)",
       },
       fontFamily: {
