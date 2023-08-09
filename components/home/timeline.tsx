@@ -44,66 +44,47 @@ export default function Timeline() {
     },
   ];
   return (
-    <div className="container pt-32 pb-24">
+    <div className="container px-5 pt-32 pb-24 lg:px-10">
       <div className="mb-24 text-center">
         <p className="mb-4 text-sm font-semibold leading-loose text-gray">
           WE LOVE EACH OTHER
         </p>
-        <h2 className="mb-4 font-sacra text-6xl font-bold text-pink">
+        <h2 className="mb-4 font-sacra text-5xl font-bold text-pink lg:text-6xl">
           Our Story
         </h2>
-        <p className="mx-auto max-w-[750px] text-lg leading-normal text-gray">
+        <p className="mx-auto max-w-[750px] text-base leading-normal text-gray lg:text-lg">
           Once upon a time, Mai and Manh lived their own boring lives, they
           didn't know anything about each other
         </p>
       </div>
 
       <div className="timeline relative py-10">
-        {timelineData.map((item, index) =>
-          index % 2 === 0 ? (
-            <div
-              key={item.id}
-              className="mb-7 flex items-center justify-center"
-            >
-              <div className="timeline-content-left relative w-full max-w-[456px] rounded-[4px] border border-gray-d4 p-6">
-                <h3 className="mb-5  text-2xl">{item.title}</h3>
-                <div className="mb-5 w-full max-w-[456px] text-left text-sm uppercase tracking-wider text-gray ">
-                  {dayjs(item.date).format("MMM D, YYYY")}
-                </div>
-                <div className="text-base text-gray">{item.content}</div>
+        {timelineData.map((item, index) => (
+          <div
+            key={item.id}
+            className={`mb-7 flex items-center justify-around lg:justify-center ${
+              index % 2 === 1 ? "lg:flex-row-reverse" : ""
+            }`}
+          >
+            <div className="timeline-content relative w-full max-w-[456px] rounded-[4px] border border-gray-d4 p-6">
+              <h3 className="mb-5  text-2xl">{item.title}</h3>
+              <div className="mb-5 w-full max-w-[456px] text-left text-sm uppercase tracking-wider text-gray ">
+                {dayjs(item.date).format("MMM D, YYYY")}
               </div>
-              <Image
-                src={item.img}
-                alt={item.title}
-                className="z-10 mx-8 rounded-full"
-                width={160}
-                height={160}
-              />
-              <div className="w-full max-w-[456px] " />
+              <div className="text-base text-gray">{item.content}</div>
             </div>
-          ) : (
-            <div
-              key={item.id}
-              className="mb-7 flex items-center justify-center"
-            >
-              <div className="w-full max-w-[456px] " />
-              <Image
-                src={item.img}
-                alt={item.title}
-                className="z-10 mx-8 rounded-full"
-                width={160}
-                height={160}
-              />
-              <div className="timeline-content-right relative w-full max-w-[456px] rounded-[4px] border border-gray-d4 p-6">
-                <h3 className="mb-5  text-2xl">{item.title}</h3>
-                <div className="mb-5 w-full max-w-[456px] text-sm uppercase tracking-wider text-gray">
-                  {dayjs(item.date).format("MMM D, YYYY")}
-                </div>
-                <div className="text-base text-gray">{item.content}</div>
-              </div>
-            </div>
-          ),
-        )}
+
+            <Image
+              src={item.img}
+              alt={item.title}
+              className="z-10 rounded-full lg:mx-8"
+              width={160}
+              height={160}
+            />
+
+            <div className="absolute lg:static lg:w-full lg:max-w-[456px] " />
+          </div>
+        ))}
       </div>
     </div>
   );

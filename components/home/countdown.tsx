@@ -40,20 +40,24 @@ export default function Countdown({ targetDate }: { targetDate: string }) {
 
   return (
     <div className="flex justify-center">
-      <div className="m-[2px] flex h-[100px] w-[100px] animate-s-pulse flex-col justify-evenly rounded-full bg-pink-8 p-3">
-        <div className="text-3xl">{timeLeft.days}</div>
+      <div className="m-[2px] flex h-[75px] w-[75px] animate-s-pulse flex-col justify-evenly rounded-full bg-pink-8 p-3 md:h-[100px] md:w-[100px]">
+        <div className="text-2xl md:text-3xl">{timeLeft.days}</div>
         <div className="text-xs opacity-70">DAY</div>
       </div>
-      <div className="m-[2px] flex h-[100px] w-[100px] animate-s-pulse flex-col justify-evenly rounded-full bg-pink-8 p-3">
-        <div className="text-3xl">{formatTime(timeLeft.hours)}</div>
+      <div className="m-[2px] flex h-[75px] w-[75px] animate-s-pulse flex-col justify-evenly rounded-full bg-pink-8 p-3 md:h-[100px] md:w-[100px]">
+        <div className="text-2xl md:text-3xl">{formatTime(timeLeft.hours)}</div>
         <div className="text-xs opacity-70">HOUR</div>
       </div>
-      <div className="m-[2px] flex h-[100px] w-[100px] animate-s-pulse flex-col justify-evenly rounded-full bg-pink-8 p-3">
-        <div className="text-3xl">{formatTime(timeLeft.minutes)}</div>
+      <div className="m-[2px] flex h-[75px] w-[75px] animate-s-pulse flex-col justify-evenly rounded-full bg-pink-8 p-3 md:h-[100px] md:w-[100px]">
+        <div className="text-2xl md:text-3xl">
+          {formatTime(timeLeft.minutes)}
+        </div>
         <div className="text-xs opacity-70">MINUTE</div>
       </div>
-      <div className="m-[2px] flex h-[100px] w-[100px] animate-s-pulse flex-col justify-evenly rounded-full bg-pink-8 p-3">
-        <div className="text-3xl">{formatTime(timeLeft.seconds)}</div>
+      <div className="m-[2px] flex h-[75px] w-[75px] animate-s-pulse flex-col justify-evenly rounded-full bg-pink-8 p-3 md:h-[100px] md:w-[100px]">
+        <div className="text-2xl md:text-3xl">
+          {formatTime(timeLeft.seconds)}
+        </div>
         <div className="text-xs opacity-70">SECOND</div>
       </div>
     </div>
