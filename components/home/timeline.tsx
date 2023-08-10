@@ -12,7 +12,7 @@ export default function Timeline() {
       img: "/assets/cat1.jpeg",
     },
     {
-      id: 1,
+      id: 2,
       title: "In A Relationship",
       date: "2023/1/1",
       content:
@@ -20,7 +20,7 @@ export default function Timeline() {
       img: "/assets/cat1.jpeg",
     },
     {
-      id: 2,
+      id: 3,
       title: "Tie The Knot",
       date: "2023/1/1",
       content:
@@ -28,7 +28,7 @@ export default function Timeline() {
       img: "/assets/cat1.jpeg",
     },
     {
-      id: 3,
+      id: 4,
       title: "10 Years Anniversary Celebration",
       date: "2023/1/1",
       content:
@@ -36,7 +36,7 @@ export default function Timeline() {
       img: "/assets/cat1.jpeg",
     },
     {
-      id: 4,
+      id: 5,
       title: "Many Years Later",
       date: "2023/1/1",
       content: "And they live happily ever after",
@@ -49,26 +49,29 @@ export default function Timeline() {
         <p className="mb-4 text-sm font-semibold leading-loose text-gray">
           WE LOVE EACH OTHER
         </p>
-        <h2 className="mb-4 font-sacra text-5xl font-bold text-pink lg:text-6xl">
+        <h2 className="mb-4 font-sacra text-5xl font-bold text-pink md:text-6xl">
           Our Story
         </h2>
         <p className="mx-auto max-w-[750px] text-base leading-normal text-gray lg:text-lg">
-          Once upon a time, Mai and Manh lived their own boring lives, they
-          didn't know anything about each other
+          {
+            "Once upon a time, Mai and Manh lived their own boring lives, they didn't know anything about each other"
+          }
         </p>
       </div>
 
-      <div className="timeline relative py-10">
+      <div className="timeline relative py-5">
         {timelineData.map((item, index) => (
           <div
             key={item.id}
-            className={`mb-7 flex items-center justify-around lg:justify-center ${
+            className={`timeline-wrap mb-7 flex items-start justify-around md:items-center md:justify-center ${
               index % 2 === 1 ? "lg:flex-row-reverse" : ""
             }`}
           >
-            <div className="timeline-content relative w-full max-w-[456px] rounded-[4px] border border-gray-d4 p-6">
-              <h3 className="mb-5  text-2xl">{item.title}</h3>
-              <div className="mb-5 w-full max-w-[456px] text-left text-sm uppercase tracking-wider text-gray ">
+            <div className="timeline-content relative w-2/3 max-w-[456px] rounded-[4px] border border-gray-d4 p-3 md:p-6 lg:w-full">
+              <h3 className="mb-2 text-xl md:text-2xl  lg:mb-5">
+                {item.title}
+              </h3>
+              <div className="mb-3 w-full max-w-[456px] text-left text-sm uppercase tracking-wider text-gray lg:mb-5 ">
                 {dayjs(item.date).format("MMM D, YYYY")}
               </div>
               <div className="text-base text-gray">{item.content}</div>
@@ -77,7 +80,7 @@ export default function Timeline() {
             <Image
               src={item.img}
               alt={item.title}
-              className="z-10 rounded-full lg:mx-8"
+              className="z-10 mt-3 h-[80px] w-[80px] rounded-full md:mx-8 md:mt-0 md:h-[160px] md:w-[160px]"
               width={160}
               height={160}
             />

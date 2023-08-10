@@ -59,7 +59,7 @@ export default function Foreword() {
               Mai Tran
             </div>
             <div className="leading-loose text-gray">
-              True love isn't found. It's built.
+              {"True love isn't found. It's built."}
             </div>
           </div>
         </div>
