@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function WeddingEvent() {
   return (
     <div className="relative h-[821px] w-full md:h-[724px] xl:h-[628px] 2xl:h-[821px]">
-      <div className="flex">
+      <div className="flex h-full">
         <div className="relative h-full w-full lg:w-[55%]">
           <Image
             src="/assets/bg-time-event-left.png"
@@ -24,12 +24,12 @@ export default function WeddingEvent() {
       </div>
 
       <div className="absolute top-0 z-10 flex h-full w-full flex-col items-center justify-center px-3 py-8 text-center lg:w-[55%]">
-        <h2 className="mb-3 font-sacra text-5xl font-bold leading-normal text-white lg:text-6xl">
+        <h2 className="animate-box mb-3 font-sacra text-5xl font-bold leading-normal text-white lg:text-6xl">
           Wedding Event
         </h2>
 
         <div className="w-full rounded-md">
-          <div className="rounded-t-md bg-black-1 px-6 pt-6 pb-3">
+          <div className="animate-box rounded-t-md bg-black-1 px-6 pt-6 pb-3">
             <div className="mb-5 border-b border-white border-opacity-50 pb-5 text-3xl text-white drop-shadow-[1px_1px_honeydew]">
               NHÀ GÁI
             </div>
@@ -60,7 +60,7 @@ export default function WeddingEvent() {
             </div>
           </div>
 
-          <div className="rounded-b-md bg-black-1 px-6 pb-6 pt-3">
+          <div className="animate-box rounded-b-md bg-black-1 px-6 pb-6 pt-3">
             <div className="mb-5 border-b border-white border-opacity-50 pb-5 text-3xl text-white drop-shadow-[1px_1px_honeydew]">
               NHÀ TRAI
             </div>

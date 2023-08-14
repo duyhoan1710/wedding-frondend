@@ -12,6 +12,10 @@
     font-family: 'Work Sans', system-ui, sans-serif;
   }
 
+  .animate-box {
+    visibility: hidden;
+  }
+
   .heart::before {
     content: "a";
     display: inline-block;

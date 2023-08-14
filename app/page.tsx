@@ -3,12 +3,14 @@ import Banner from "@/components/home/banner";
 import Footer from "@/components/home/footer";
 import Foreword from "@/components/home/foreword";
 import Memories from "@/components/home/memory";
+import Nav from "@/components/home/nav";
 import Timeline from "@/components/home/timeline";
 import WeddingEvent from "@/components/home/wedding-event";
 
 export default async function Home() {
   return (
     <div className="flex flex-col items-center justify-center">
+      <Nav />
       <Banner />
       <Foreword />
       <WeddingEvent />

@@ -4,7 +4,7 @@ export default function Memories() {
   return (
     <div className="w-full bg-gray-4 pt-32 pb-24">
       <div className="container mx-auto">
-        <div className="mb-24 text-center">
+        <div className="animate-box mb-24 text-center">
           <p className="mb-4 text-sm font-semibold leading-loose text-gray">
             OUR MEMORIES
           </p>
@@ -14,7 +14,7 @@ export default function Memories() {
         </div>
 
         <div className="mx-auto flex w-full max-w-[1140px] flex-wrap px-5 xl:w-3/4">
-          <div className="h-[416px] w-full p-1 md:w-1/3 lg:p-[5px]">
+          <div className="animate-box h-[416px] w-full p-1 md:w-1/3 lg:p-[5px]">
             <div className="relative h-full w-full">
               <Image
                 src="/assets/gallery-1.jpeg"
@@ -27,7 +27,7 @@ export default function Memories() {
             </div>
           </div>
 
-          <div className="h-[416px] w-full p-1 md:w-1/3 lg:p-[5px]">
+          <div className="animate-box h-[416px] w-full p-1 md:w-1/3 lg:p-[5px]">
             <div className="relative h-full w-full">
               <Image
                 src="/assets/gallery-1.jpeg"
@@ -40,7 +40,7 @@ export default function Memories() {
             </div>
           </div>
 
-          <div className="h-[416px] w-full p-1 md:w-1/3 lg:p-[5px]">
+          <div className="animate-box h-[416px] w-full p-1 md:w-1/3 lg:p-[5px]">
             <div className="relative h-full w-full">
               <Image
                 src="/assets/gallery-1.jpeg"
@@ -53,7 +53,7 @@ export default function Memories() {
             </div>
           </div>
 
-          <div className="h-[416px] w-full p-1 md:w-1/3 lg:p-[5px]">
+          <div className="animate-box h-[416px] w-full p-1 md:w-1/3 lg:p-[5px]">
             <div className="relative h-full w-full">
               <Image
                 src="/assets/gallery-1.jpeg"
@@ -66,7 +66,7 @@ export default function Memories() {
             </div>
           </div>
 
-          <div className="h-[416px] w-full p-1 md:w-1/3 lg:p-[5px]">
+          <div className="animate-box h-[416px] w-full p-1 md:w-1/3 lg:p-[5px]">
             <div className="relative h-full w-full">
               <Image
                 src="/assets/gallery-1.jpeg"
@@ -79,7 +79,7 @@ export default function Memories() {
             </div>
           </div>
 
-          <div className="h-[416px] w-full p-1 md:w-1/3 lg:p-[5px]">
+          <div className="animate-box h-[416px] w-full p-1 md:w-1/3 lg:p-[5px]">
             <div className="relative h-full w-full">
               <Image
                 src="/assets/gallery-1.jpeg"
@@ -92,7 +92,7 @@ export default function Memories() {
             </div>
           </div>
 
-          <div className="h-[416px] w-full p-1 md:w-1/3 lg:p-[5px]">
+          <div className="animate-box h-[416px] w-full p-1 md:w-1/3 lg:p-[5px]">
             <div className="relative h-full w-full">
               <Image
                 src="/assets/gallery-1.jpeg"
@@ -105,7 +105,7 @@ export default function Memories() {
             </div>
           </div>
 
-          <div className="h-[416px] w-full p-1 md:w-1/3 lg:p-[5px]">
+          <div className="animate-box h-[416px] w-full p-1 md:w-1/3 lg:p-[5px]">
             <div className="relative h-full w-full">
               <Image
                 src="/assets/gallery-1.jpeg"
@@ -118,7 +118,7 @@ export default function Memories() {
             </div>
           </div>
 
-          <div className="h-[416px] w-full p-1 md:w-1/3 lg:p-[5px]">
+          <div className="animate-box h-[416px] w-full p-1 md:w-1/3 lg:p-[5px]">
             <div className="relative h-full w-full">
               <Image
                 src="/assets/gallery-1.jpeg"

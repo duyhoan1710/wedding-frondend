@@ -1,23 +1,34 @@
 "use client";
 
+import { sleep } from "@/lib/utils";
 import React from "react";
 
 export default function FadeInSection(props: any) {
-  const [isVisible, setVisible] = React.useState(true);
-
-  const domRef = React.useRef<any>();
   React.useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => setVisible(entry.isIntersecting));
-    });
-    observer.observe(domRef.current);
+    const animateBox = document.querySelectorAll(".animate-box");
 
-    return () => observer.unobserve(domRef.current);
+    const observer = new IntersectionObserver(
+      async (entries) => {
+        for (const entry of entries) {
+          if (entry.intersectionRatio >= 0.9) {
+            entry.target.classList.add("animate-fade-up", "visible");
+            await sleep(300);
+          }
+        }
+      },
+      {
+        threshold: 1,
+      },
+    );
+
+    animateBox.forEach((element) => {
+      if (element) {
+        observer.observe(element);
+      }
+    });
+
+    return () => observer.disconnect();
   }, []);
 
-  return (
-    <div className={`${isVisible ? "animate-fade-up" : ""}`} ref={domRef}>
-      {props.children}
-    </div>
-  );
+  return <>{props.children}</>;
 }

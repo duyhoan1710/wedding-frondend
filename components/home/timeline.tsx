@@ -45,7 +45,7 @@ export default function Timeline() {
   ];
   return (
     <div className="container px-5 pt-32 pb-24 lg:px-10">
-      <div className="mb-24 text-center">
+      <div className="animate-box mb-24 text-center">
         <p className="mb-4 text-sm font-semibold leading-loose text-gray">
           WE LOVE EACH OTHER
         </p>
@@ -63,7 +63,7 @@ export default function Timeline() {
         {timelineData.map((item, index) => (
           <div
             key={item.id}
-            className={`timeline-wrap mb-7 flex items-start justify-around md:items-center md:justify-center ${
+            className={`animate-box timeline-wrap mb-7 flex items-start justify-around md:items-center md:justify-center ${
               index % 2 === 1 ? "lg:flex-row-reverse" : ""
             }`}
           >

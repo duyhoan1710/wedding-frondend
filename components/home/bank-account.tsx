@@ -12,7 +12,7 @@ export default function BankAccount() {
       <div className="absolute top-0 bottom-0 left-0 right-0 bg-black opacity-40" />
 
       <div className="absolute flex h-full w-full max-w-[1140px] flex-col items-center justify-center px-5 text-center">
-        <div className="px-2 md:mb-10">
+        <div className="animate-box px-2 md:mb-10">
           <h2 className="font-sacra text-[40px] font-bold leading-normal text-white lg:mb-5 lg:text-6xl">
             Thông Tin Ngân Hàng
           </h2>
@@ -22,7 +22,7 @@ export default function BankAccount() {
         </div>
 
         <div className="flex w-full flex-col items-center md:flex-row md:justify-around">
-          <div className="mt-8 flex flex-col items-center md:mt-0 md:text-right">
+          <div className="animate-box mt-8 flex flex-col items-center md:mt-0 md:text-right">
             <div className="mb-5 font-sacra text-3xl text-pink">
               Nguyen Van Manh
             </div>
@@ -38,7 +38,7 @@ export default function BankAccount() {
             />
           </div>
 
-          <div className="mt-8 flex flex-col items-center md:mt-0 md:text-left">
+          <div className="animate-box mt-8 flex flex-col items-center md:mt-0 md:text-left">
             <div className="mb-5 font-sacra text-3xl text-pink">
               Tran Ngoc Chi Mai
             </div>
