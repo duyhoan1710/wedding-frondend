@@ -1,17 +1,33 @@
-import Image from "next/image";
+"use client";
+
+import { useEffect, useRef } from "react";
 import Countdown from "./countdown";
 
 export default function Banner() {
-  return (
-    <div className="relative h-[55vh] w-full md:h-screen">
-      <Image
-        src="/assets/main.jpeg"
-        alt=""
-        fill={true}
-        quality={100}
-        style={{ objectFit: "cover" }}
-      />
+  const bannerRef = useRef<HTMLDivElement>(null);
 
+  useEffect(() => {
+    const onScrollBanner = () => {
+      bannerRef.current?.style.setProperty(
+        "background-position",
+        `0 ${window.scrollY / 2.5}px`,
+      );
+    };
+    window.addEventListener("scroll", onScrollBanner);
+
+    return () => window.removeEventListener("scroll", onScrollBanner);
+  }, []);
+
+  return (
+    <div
+      className="relative h-[55vh] w-full md:h-screen"
+      style={{
+        backgroundImage: "url('/assets/main.jpeg')",
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+      }}
+      ref={bannerRef}
+    >
       <div className="absolute top-0 bottom-0 left-0 right-0 z-10 bg-black opacity-50"></div>
 
       <div className="absolute top-[25%] bottom-0 left-0 right-0 z-20 text-center text-white md:top-[18%]">
