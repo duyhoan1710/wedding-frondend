@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-export default function Memories() {
+export default function Memory() {
   return (
     <div className="w-full bg-gray-4 pt-32 pb-24">
       <div className="container mx-auto">

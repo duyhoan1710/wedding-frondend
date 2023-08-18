@@ -1,11 +1,11 @@
-import BankAccount from "@/components/home/bank-account";
-import Banner from "@/components/home/banner";
-import Footer from "@/components/home/footer";
-import Foreword from "@/components/home/foreword";
-import Memories from "@/components/home/memory";
-import Nav from "@/components/home/nav";
-import Timeline from "@/components/home/timeline";
-import WeddingEvent from "@/components/home/wedding-event";
+import BankAccount from "@/components/home/v1/BankAccount";
+import Banner from "@/components/home/v1/Banner";
+import Foreword from "@/components/home/v1/Foreword";
+import Memory from "@/components/home/v1/Memory";
+import Nav from "@/components/home/v1/Nav";
+import Timeline from "@/components/home/v1/Timeline";
+import WeddingEvent from "@/components/home/v1/WeddingEvent";
+import Footer from "@/components/layout/footer";
 
 export default async function Home() {
   return (
@@ -15,7 +15,7 @@ export default async function Home() {
       <Foreword />
       <WeddingEvent />
       <Timeline />
-      <Memories />
+      <Memory />
       <BankAccount />
       <Footer />
     </div>

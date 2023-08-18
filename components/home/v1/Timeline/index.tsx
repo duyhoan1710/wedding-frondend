@@ -1,6 +1,8 @@
 import Image from "next/image";
 import dayjs from "dayjs";
 
+import { TimelineStyled } from "./styled";
+
 export default function Timeline() {
   const timelineData = [
     {
@@ -44,7 +46,7 @@ export default function Timeline() {
     },
   ];
   return (
-    <div className="container px-5 pt-32 pb-24 lg:px-10">
+    <TimelineStyled className="container px-5 pt-32 pb-24 lg:px-10">
       <div className="animate-box mb-24 text-center">
         <p className="mb-4 text-sm font-semibold leading-loose text-gray">
           WE LOVE EACH OTHER
@@ -89,6 +91,6 @@ export default function Timeline() {
           </div>
         ))}
       </div>
-    </div>
+    </TimelineStyled>
   );
 }

@@ -1,8 +1,10 @@
 import Image from "next/image";
 
+import { ForewordStyled } from "./styled";
+
 export default function Foreword() {
   return (
-    <div className="container flex flex-col items-center justify-center py-16 px-5 md:px-10">
+    <ForewordStyled className="container flex flex-col items-center justify-center py-16 px-5 md:px-10">
       <div className="mb-20 w-full max-w-[750px]">
         <h2 className="animate-box mb-2 font-sacra text-[40px] font-bold leading-normal text-pink md:text-6xl">
           Dear all,
@@ -64,6 +66,6 @@ export default function Foreword() {
           </div>
         </div>
       </div>
-    </div>
+    </ForewordStyled>
   );
 }
