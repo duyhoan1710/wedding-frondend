@@ -2,6 +2,7 @@ import "./globals.css";
 import cx from "classnames";
 import { sfPro, inter, sacra } from "./fonts";
 import FadeInSection from "@/components/common/fadeInSection";
+import Footer from "@/components/layout/footer";
 
 export const metadata = {
   title: "Precedent - Building blocks for your Next.js project",
@@ -28,6 +29,7 @@ export default async function RootLayout({
       <body className={cx(sfPro.variable, inter.variable, sacra.variable)}>
         <main className="min-h-screen w-full">
           <FadeInSection>{children}</FadeInSection>
+          <Footer />
         </main>
       </body>
     </html>

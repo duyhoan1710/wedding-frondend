@@ -5,7 +5,7 @@ import Memory from "@/components/home/v1/Memory";
 import Nav from "@/components/home/v1/Nav";
 import Timeline from "@/components/home/v1/Timeline";
 import WeddingEvent from "@/components/home/v1/WeddingEvent";
-import Footer from "@/components/layout/footer";
+import Footer from "@/components/home/v1/Footer";
 
 export default async function Home() {
   return (

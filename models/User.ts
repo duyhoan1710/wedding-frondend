@@ -1,0 +1,43 @@
+import { Role, Status } from "@/lib/enum";
+import mongoose from "mongoose";
+
+export interface IUser {
+  _id: string;
+  username: string;
+  password: string;
+  role: Role;
+  status: Status;
+  isActive: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+const UserSchema = new mongoose.Schema(
+  {
+    username: {
+      type: String,
+      required: true,
+    },
+    password: {
+      type: String,
+      required: true,
+    },
+    role: {
+      type: Number,
+      required: true,
+    },
+    status: {
+      type: Number,
+      required: true,
+    },
+    isActive: {
+      type: Boolean,
+      required: true,
+    },
+  },
+  { timestamps: true },
+);
+
+UserSchema.index({ username: 1 }, { unique: true });
+
+export default mongoose.models.User || mongoose.model("User", UserSchema);
