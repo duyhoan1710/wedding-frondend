@@ -19,28 +19,24 @@ export async function middleware(req: NextRequest) {
     token = req.headers.get("Authorization")?.substring(7);
   }
 
-  console.log(token);
-
   if (!token) {
-    return getErrorResponse(
-      401,
-      "You are not logged in. Please provide a token to gain access.",
-    );
+    return getErrorResponse({
+      status: 401,
+      message: "You are not logged in. Please provide a token to gain access.",
+    });
   }
 
   const response = NextResponse.next();
 
   try {
-    const payload = verifyJWT(token);
-
-    console.log(payload);
+    const payload = await verifyJWT(token);
 
     (req as AuthenticatedRequest).user = payload as any;
   } catch (error) {
-    return getErrorResponse(
-      401,
-      "Token is invalid. Please provide another token to gain access.",
-    );
+    return getErrorResponse({
+      status: 401,
+      message: "Token is invalid. Please provide another token to gain access.",
+    });
   }
 
   return response;

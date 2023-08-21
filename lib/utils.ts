@@ -1,5 +1,6 @@
 import ms from "ms";
 
+import { envVariable } from "./constants";
 import { EnvVariableKey } from "./enum";
 
 export const timeAgo = (timestamp: Date, timeOnly?: boolean): string => {
@@ -20,7 +21,7 @@ export const truncate = (str: string, length: number) => {
 };
 
 export function getEnvVariable(key: EnvVariableKey): string {
-  const value = process.env[key];
+  const value = envVariable[key];
 
   if (!value || value.length === 0) {
     console.error(`The environment variable ${key} is not set.`);
@@ -31,3 +32,14 @@ export function getEnvVariable(key: EnvVariableKey): string {
 }
 
 export const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+
+export const getPagination = (
+  url: string,
+): { page: number; perPage: number } => {
+  const query = new URL(url).searchParams;
+
+  const page = Number(query.get("page")) || 1;
+  const perPage = Number(query.get("perPage")) || 20;
+
+  return { page, perPage };
+};

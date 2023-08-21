@@ -6,9 +6,6 @@ const nextConfig = {
     appDir: true,
     serverComponentsExternalPackages: ["mongoose"],
   },
-  experiments: {
-    topLevelAwait: true,
-  },
   images: {
     domains: ["vercel.com"],
   },

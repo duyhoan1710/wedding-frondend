@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
+import { EnvVariableKey } from "./enum";
+import { getEnvVariable } from "./utils";
 
-const MONGODB_URI = process.env.MONGODB_URI as string;
+const MONGODB_URI = getEnvVariable(EnvVariableKey.MONGODB_URI) as string;
 
 if (!MONGODB_URI) {
   throw new Error(
