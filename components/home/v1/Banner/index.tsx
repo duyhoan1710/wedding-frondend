@@ -21,7 +21,7 @@ export default function Banner() {
 
   return (
     <div
-      className="relative h-[35vh] w-full md:h-screen"
+      className="relative h-[330px] w-full md:h-[560px] lg:h-screen"
       style={{
         backgroundImage: "url('/assets/main.jpeg')",
         backgroundSize: "cover",
@@ -33,13 +33,13 @@ export default function Banner() {
 
       <div className="absolute top-[20%] bottom-0 left-0 right-0 z-20 text-center text-white md:top-[18%]">
         <div className="animate-box">
-          <h1 className="font-sacra text-4xl leading-tight md:text-8xl md:leading-normal">
+          <h1 className="font-sacra text-4xl leading-tight md:text-6xl md:leading-normal lg:text-8xl">
             Mai Tran
           </h1>
-          <h1 className="font-sacra text-2xl leading-tight md:text-8xl md:leading-normal">
+          <h1 className="font-sacra text-2xl leading-tight md:text-6xl md:leading-normal lg:text-8xl">
             &
           </h1>
-          <h1 className="font-sacra text-4xl leading-tight md:text-8xl md:leading-normal">
+          <h1 className="font-sacra text-4xl leading-tight md:text-6xl md:leading-normal lg:text-8xl">
             Manh Nguyen
           </h1>
           <p className="mb-4 mt-3 text-sm md:mb-6 md:text-xl">
