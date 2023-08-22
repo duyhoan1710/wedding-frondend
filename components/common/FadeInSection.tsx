@@ -1,7 +1,8 @@
 "use client";
 
-import { sleep } from "@/lib/utils";
 import React from "react";
+
+import { sleep } from "@/lib/utils";
 
 export default function FadeInSection(props: any) {
   React.useEffect(() => {

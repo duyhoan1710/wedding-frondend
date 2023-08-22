@@ -9,7 +9,7 @@
       "@/components/*": ["components/*"],
       "@/app/*": ["app/*"],
       "@/lib/*": ["lib/*"],
-      "@/models/*": ["models/*"]
+      "@/models/*": ["lib/models/*"]
     },
     "strict": true,
     "forceConsistentCasingInFileNames": true,

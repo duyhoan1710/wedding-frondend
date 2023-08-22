@@ -50,7 +50,7 @@ export const TimelineStyled = styled.div`
     .timeline-content::before {
       width: 20px;
       height: 20px;
-      right: -10px;
+      right: -10px !important;
       top: calc(50% - 10px);
     }
 

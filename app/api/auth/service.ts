@@ -1,6 +1,4 @@
-import { NextResponse } from "next/server";
-
-import User, { IUser } from "models/User";
+import User, { IUser } from "@/lib/models/User";
 import { compareHash, hash } from "@/lib/helpers/bcrypt";
 import { Role, Status } from "@/lib/enum";
 import connectDB from "@/lib/dbConnect";
@@ -11,20 +9,20 @@ connectDB();
 
 interface IAuth {
   email: string;
-  username: string;
+  fullName: string;
   password: string;
 }
 
 export const register = async ({
   email,
-  username,
+  fullName,
   password,
 }: IAuth): Promise<void> => {
   const hashPassword = await hash(password);
 
   await User.create({
     email,
-    username,
+    fullName,
     password: hashPassword,
     role: Role.USER,
     status: Status.TRAIL,

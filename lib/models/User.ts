@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 
 export interface IUser {
   _id: string;
-  username: string;
+  fullName: string;
   email: string;
   password: string;
   role: Role;
@@ -15,7 +15,7 @@ export interface IUser {
 
 const UserSchema = new mongoose.Schema(
   {
-    username: {
+    fullName: {
       type: String,
       required: true,
     },
@@ -43,7 +43,7 @@ const UserSchema = new mongoose.Schema(
   { timestamps: true },
 );
 
-UserSchema.index({ username: 1 });
+UserSchema.index({ fullName: 1 });
 UserSchema.index({ email: 1 }, { unique: true });
 
 export default mongoose.models.User || mongoose.model("User", UserSchema);

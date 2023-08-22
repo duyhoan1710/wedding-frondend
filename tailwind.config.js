@@ -1,8 +1,13 @@
 /** @type {import('tailwindcss').Config} */
 const plugin = require("tailwindcss/plugin");
+const { nextui } = require("@nextui-org/react");
 
 module.exports = {
-  content: ["./app/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
+  content: [
+    "./app/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
+  ],
   future: {
     hoverOnlyWhenSupported: true,
   },
@@ -81,6 +86,7 @@ module.exports = {
       },
     },
   },
+  darkMode: "class",
   plugins: [
     require("@tailwindcss/forms"),
     require("@tailwindcss/typography"),
@@ -88,5 +94,6 @@ module.exports = {
       addVariant("radix-side-top", '&[data-side="top"]');
       addVariant("radix-side-bottom", '&[data-side="bottom"]');
     }),
+    nextui(),
   ],
 };

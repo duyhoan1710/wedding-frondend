@@ -6,19 +6,36 @@ import { ToastContainer, toast } from "react-toastify";
 import Cookies from "js-cookie";
 import Router from "next/router";
 import Link from "next/link";
+import { useForm } from "react-hook-form";
+import * as Yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useRouter } from "next/navigation";
 
-export default function Home() {
-  const [formData, setFormData] = useState({ email: "", password: "" });
+import * as authFetcher from "@/lib/fetchers/auth";
 
-  const handleSubmit = async (e: any) => {
-    e.preventDefault();
-    // const res = await login_user(formData);
+export default function Login() {
+  const router = useRouter();
+
+  const validationSchema = Yup.object().shape({
+    email: Yup.string().required("Email is required"),
+    password: Yup.string()
+      .required("Password is required")
+      .min(6, "Password must be at least 6 characters"),
+  });
+  const formOptions = {
+    resolver: yupResolver(validationSchema),
+    mode: "onChange" as any,
+  };
+
+  const { register, handleSubmit, formState } = useForm(formOptions);
+  const { errors } = formState;
+
+  const onSubmit = async (payload: any) => {
+    const res = await authFetcher.login(payload);
+
+    router.push("/");
     // if (res.success) {
     //   toast.success(res.message);
-    //   Cookies.set("token", res.token);
-    //   setTimeout(() => {
-    //     Router.push("/home");
-    //   }, 1000);
     // } else {
     //   toast.error(res.message);
     // }
@@ -33,14 +50,14 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <section className="bg-slate-200 text-center text-indigo-600">
-        <div className="mx-auto flex flex-col items-center justify-center  px-6 py-8 md:h-screen lg:py-0">
+        <div className="mx-auto flex h-screen flex-col items-center  justify-center px-6 py-8 lg:py-0">
           <div className="w-full rounded-lg bg-white shadow dark:border dark:border-indigo-700 dark:bg-indigo-800 sm:max-w-md md:mt-0 xl:p-0">
             <div className="space-y-4 p-6 sm:p-8 md:space-y-6">
               <h1 className="text-xl font-bold leading-tight tracking-tight text-indigo-600 dark:text-white md:text-2xl">
                 Sign in to your account
               </h1>
               <form
-                onSubmit={handleSubmit}
+                onSubmit={handleSubmit(onSubmit)}
                 className=" space-y-4 md:space-y-6"
                 action="#"
               >
@@ -52,13 +69,11 @@ export default function Home() {
                     Your email
                   </label>
                   <input
-                    onChange={(e) =>
-                      setFormData({ ...formData, email: e.target.value })
-                    }
+                    {...register("email")}
                     type="email"
                     name="email"
                     id="email"
-                    className="focus:ring-primary-600 focus:border-primary-600 block w-full rounded-lg border border-indigo-300 bg-indigo-50 p-2.5 text-indigo-900 dark:border-indigo-600 dark:bg-indigo-700 dark:text-white dark:placeholder-indigo-400 dark:focus:border-blue-500 dark:focus:ring-blue-500 sm:text-sm"
+                    className="block w-full rounded-lg border border-indigo-300 bg-indigo-50 p-2.5 text-indigo-900 focus:border-primary-600 focus:ring-primary-600 dark:border-indigo-600 dark:bg-indigo-700 dark:text-white dark:placeholder-indigo-400 dark:focus:border-blue-500 dark:focus:ring-blue-500 sm:text-sm"
                     placeholder="name@company.com"
                   />
                 </div>
@@ -70,14 +85,12 @@ export default function Home() {
                     Password
                   </label>
                   <input
-                    onChange={(e) =>
-                      setFormData({ ...formData, password: e.target.value })
-                    }
+                    {...register("password")}
                     type="password"
                     name="password"
                     id="password"
                     placeholder="••••••••"
-                    className="focus:ring-primary-600 focus:border-primary-600 block w-full rounded-lg border border-indigo-300 bg-indigo-50 p-2.5 text-indigo-900 dark:border-indigo-600 dark:bg-indigo-700 dark:text-white dark:placeholder-indigo-400 dark:focus:border-blue-500 dark:focus:ring-blue-500 sm:text-sm"
+                    className="block w-full rounded-lg border border-indigo-300 bg-indigo-50 p-2.5 text-indigo-900 focus:border-primary-600 focus:ring-primary-600 dark:border-indigo-600 dark:bg-indigo-700 dark:text-white dark:placeholder-indigo-400 dark:focus:border-blue-500 dark:focus:ring-blue-500 sm:text-sm"
                   />
                 </div>
                 <div className="flex items-center justify-between">
@@ -87,7 +100,7 @@ export default function Home() {
                         id="remember"
                         aria-describedby="remember"
                         type="checkbox"
-                        className="focus:ring-3 focus:ring-primary-300 dark:focus:ring-primary-600 h-4 w-4 rounded border border-indigo-300 bg-indigo-50 dark:border-indigo-600 dark:bg-indigo-700 dark:ring-offset-indigo-800"
+                        className="focus:ring-3 h-4 w-4 rounded border border-indigo-300 bg-indigo-50 focus:ring-primary-300 dark:border-indigo-600 dark:bg-indigo-700 dark:ring-offset-indigo-800 dark:focus:ring-primary-600"
                       />
                     </div>
                     <div className="ml-3 text-sm">
@@ -101,14 +114,14 @@ export default function Home() {
                   </div>
                   <a
                     href="#"
-                    className="text-primary-600 dark:text-primary-500 text-sm font-medium hover:underline"
+                    className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
                   >
                     Forgot password?
                   </a>
                 </div>
                 <button
                   type="submit"
-                  className="hover:bg-primary-700 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 w-full rounded-lg bg-indigo-600 px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-4"
+                  className="w-full rounded-lg bg-indigo-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-primary-700 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                 >
                   Sign in
                 </button>
@@ -116,7 +129,7 @@ export default function Home() {
                   Don’t have an account yet?{" "}
                   <Link
                     href="/register"
-                    className="dark:text-primary-500 font-medium text-indigo-600 hover:underline"
+                    className="font-medium text-indigo-600 hover:underline dark:text-primary-500"
                   >
                     Sign up
                   </Link>
