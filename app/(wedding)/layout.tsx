@@ -1,4 +1,4 @@
-import FadeInSection from "@/components/common/FadeInSection";
+import FadeInSection from "@/components/shared/FadeInSection";
 
 export default async function RootLayout({
   children,
