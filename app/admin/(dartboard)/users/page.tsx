@@ -17,7 +17,11 @@ import {
 } from "@nextui-org/react";
 import { useState } from "react";
 
-export default function UsersPage() {
+import * as userFetcher from "@/lib/fetchers/users";
+
+export default async function UsersPage() {
+  // const users = await userFetcher.getUsers({ page: 1, perPage: 20 });
+
   const [selectedKeys, setSelectedKeys] = useState(new Set(["2"]));
 
   return (

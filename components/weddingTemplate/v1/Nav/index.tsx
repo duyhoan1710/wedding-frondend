@@ -1,17 +1,13 @@
-"use client";
-
-import useScroll from "@/lib/hooks/use-scroll";
+import { useTranslations } from "next-intl";
 
 export default function Nav() {
-  const scrolled = useScroll(20);
+  const t = useTranslations("Index");
 
   return (
     <div
-      className={`fixed top-6 left-8 z-20 hidden w-[150px] font-sacra text-2xl leading-[1.2] text-white md:top-8 md:left-20 md:block md:text-[40px] ${
-        scrolled ? "invisible" : "visible"
-      }`}
+      className={`absolute top-6 left-8 z-20 hidden w-[200px] font-sacra text-2xl leading-[1.2] text-white md:top-8 md:left-20 md:block md:text-[40px]`}
     >
-      Wedding Invitation
+      {t("invite")}
     </div>
   );
 }
