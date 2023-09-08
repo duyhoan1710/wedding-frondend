@@ -1,5 +1,6 @@
 "use client";
 
+import FloatingElements from "@/components/shared/FloatingAnimation";
 import { useEffect, useRef } from "react";
 
 import Countdown from "../Countdown";
@@ -21,7 +22,7 @@ export default function Banner() {
 
   return (
     <div
-      className="relative h-[330px] w-full md:h-[560px] lg:h-screen"
+      className="relative h-[330px] w-full overflow-y-hidden md:h-[560px] lg:h-screen"
       style={{
         backgroundImage: "url('/assets/main.jpeg')",
         backgroundSize: "cover",
@@ -48,6 +49,8 @@ export default function Banner() {
           <Countdown targetDate="2023-10-01T23:59:59" />
         </div>
       </div>
+
+      <FloatingElements />
     </div>
   );
 }
