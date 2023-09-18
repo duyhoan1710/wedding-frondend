@@ -9,6 +9,7 @@ import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import * as authFetcher from "@/lib/fetchers/auth";
+import { useMutation } from "@tanstack/react-query";
 
 export default function Register() {
   const router = useRouter();
@@ -25,19 +26,18 @@ export default function Register() {
     mode: "onChange" as any,
   };
 
-  const { register, handleSubmit, formState } = useForm(formOptions);
+  const { register, handleSubmit, formState, getValues } = useForm(formOptions);
   const { errors } = formState;
 
-  const onSubmit = async (payload: any) => {
-    await authFetcher.register(payload);
-
-    router.push("/login");
-    // if (res.success) {
-    //   toast.success(res.message);
-    // } else {
-    //   toast.error(res.message);
-    // }
-  };
+  const { mutate: onSubmit } = useMutation({
+    mutationFn: () => authFetcher.register(getValues()),
+    onSuccess: () => {
+      router.push("/login");
+    },
+    onError: (error: any) => {
+      toast.error(error);
+    },
+  });
 
   return (
     <>
@@ -65,7 +65,7 @@ export default function Register() {
                     type="text"
                     name="fullName"
                     id="fullName"
-                    className="focus:ring-primary-600 focus:border-primary-600 block w-full rounded-lg border border-indigo-300 bg-indigo-50 p-2.5 text-indigo-700 dark:border-indigo-600 dark:bg-indigo-700 dark:text-white dark:placeholder-indigo-400 dark:focus:border-blue-500 dark:focus:ring-blue-500 sm:text-sm"
+                    className="block w-full rounded-lg border border-indigo-300 bg-indigo-50 p-2.5 text-indigo-700 focus:border-primary-600 focus:ring-primary-600 dark:border-indigo-600 dark:bg-indigo-700 dark:text-white dark:placeholder-indigo-400 dark:focus:border-blue-500 dark:focus:ring-blue-500 sm:text-sm"
                     placeholder="Abdullah Moiz"
                   />
                 </div>
@@ -81,7 +81,7 @@ export default function Register() {
                     type="email"
                     name="email"
                     id="email"
-                    className="focus:ring-primary-600 focus:border-primary-600 block w-full rounded-lg border border-indigo-300 bg-indigo-50 p-2.5 text-indigo-700 dark:border-indigo-600 dark:bg-indigo-700 dark:text-white dark:placeholder-indigo-400 dark:focus:border-blue-500 dark:focus:ring-blue-500 sm:text-sm"
+                    className="block w-full rounded-lg border border-indigo-300 bg-indigo-50 p-2.5 text-indigo-700 focus:border-primary-600 focus:ring-primary-600 dark:border-indigo-600 dark:bg-indigo-700 dark:text-white dark:placeholder-indigo-400 dark:focus:border-blue-500 dark:focus:ring-blue-500 sm:text-sm"
                     placeholder="name@company.com"
                   />
                 </div>
@@ -98,13 +98,13 @@ export default function Register() {
                     name="password"
                     id="password"
                     placeholder="••••••••"
-                    className="focus:ring-primary-600 focus:border-primary-600 block w-full rounded-lg border border-indigo-300 bg-indigo-50 p-2.5 text-indigo-700 dark:border-indigo-600 dark:bg-indigo-700 dark:text-white dark:placeholder-indigo-400 dark:focus:border-blue-500 dark:focus:ring-blue-500 sm:text-sm"
+                    className="block w-full rounded-lg border border-indigo-300 bg-indigo-50 p-2.5 text-indigo-700 focus:border-primary-600 focus:ring-primary-600 dark:border-indigo-600 dark:bg-indigo-700 dark:text-white dark:placeholder-indigo-400 dark:focus:border-blue-500 dark:focus:ring-blue-500 sm:text-sm"
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="hover:bg-primary-700 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 w-full rounded-lg bg-indigo-600 px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-4"
+                  className="w-full rounded-lg bg-indigo-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-primary-700 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                 >
                   Sign Up
                 </button>
@@ -112,7 +112,7 @@ export default function Register() {
                   Already have an account{" "}
                   <Link
                     href="/login"
-                    className="text-primary-600 dark:text-primary-500 font-medium hover:underline"
+                    className="font-medium text-primary-600 hover:underline dark:text-primary-500"
                   >
                     Sign In
                   </Link>

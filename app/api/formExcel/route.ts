@@ -20,7 +20,6 @@ export async function POST(request: Request) {
   try {
     const auth = await authorize();
 
-    // Load the Google Sheets API
     const sheets = google.sheets({ version: "v4", auth });
 
     const spreadsheetId = "1hbSa8RibQdd0TPFzUzkiu1CT97ICH1Yhmd2RONSYYN4";
@@ -42,7 +41,7 @@ export async function POST(request: Request) {
     values.push(newRow);
 
     // Update the sheet with the new data
-    const result = await sheets.spreadsheets.values.update({
+    await sheets.spreadsheets.values.update({
       spreadsheetId,
       range,
       valueInputOption: "RAW",

@@ -6,7 +6,7 @@ import Nav from "@/components/weddingTemplate/v1/Nav";
 import Timeline from "@/components/weddingTemplate/v1/Timeline";
 import WeddingEvent from "@/components/weddingTemplate/v1/WeddingEvent";
 import Footer from "@/components/weddingTemplate/v1/Footer";
-import AttendForm from "@/components/weddingTemplate/v1/AttendForm";
+// import AttendForm from "@/components/weddingTemplate/v1/AttendForm";
 
 export default async function Home() {
   return (
@@ -18,7 +18,7 @@ export default async function Home() {
       <Timeline />
       <Memory />
       <BankAccount />
-      <AttendForm />
+      {/* <AttendForm /> */}
       <Footer />
     </div>
   );

@@ -37,7 +37,7 @@ export default function Foreword() {
           </div>
 
           <Image
-            src="/assets/husband.jpeg"
+            src="/assets/wedding_img/husband.png"
             alt=""
             height={120}
             width={120}
@@ -49,7 +49,7 @@ export default function Foreword() {
 
         <div className="animate-box md:flex lg:w-1/2">
           <Image
-            src="/assets/wife.jpeg"
+            src="/assets/wedding_img/wife.png"
             alt=""
             height={120}
             width={120}

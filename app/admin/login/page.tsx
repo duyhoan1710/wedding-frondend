@@ -1,17 +1,16 @@
 "use client";
 
 import Head from "next/head";
-import { useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
-import Cookies from "js-cookie";
-import Router from "next/router";
+import { toast } from "react-toastify";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/navigation";
+import { useMutation } from "@tanstack/react-query";
 
 import * as authFetcher from "@/lib/fetchers/auth";
+import { setAccessToken } from "@/lib/helpers/localStorage";
 
 export default function Login() {
   const router = useRouter();
@@ -27,19 +26,19 @@ export default function Login() {
     mode: "onChange" as any,
   };
 
-  const { register, handleSubmit, formState } = useForm(formOptions);
+  const { register, handleSubmit, formState, getValues } = useForm(formOptions);
   const { errors } = formState;
 
-  const onSubmit = async (payload: any) => {
-    const res = await authFetcher.login(payload);
-
-    router.push("/");
-    // if (res.success) {
-    //   toast.success(res.message);
-    // } else {
-    //   toast.error(res.message);
-    // }
-  };
+  const { mutate: onSubmit } = useMutation({
+    mutationFn: () => authFetcher.login(getValues()),
+    onSuccess: (res) => {
+      setAccessToken(res.accessToken);
+      router.push("/");
+    },
+    onError: (error: any) => {
+      toast.error(error);
+    },
+  });
 
   return (
     <>
@@ -139,7 +138,6 @@ export default function Login() {
           </div>
         </div>
       </section>
-      <ToastContainer />
     </>
   );
 }

@@ -19,7 +19,7 @@ export default function Timeline() {
       date: "2023/1/1",
       content:
         "It took a long time for us to confess our feelings to each other.",
-      img: "/assets/cat1.jpeg",
+      img: "/assets/cat2.jpeg",
     },
     {
       id: 3,
@@ -27,22 +27,22 @@ export default function Timeline() {
       date: "2023/1/1",
       content:
         "And it took even longer to build, until we came to a big decision",
-      img: "/assets/cat1.jpeg",
+      img: "/assets/cat3.jpeg",
     },
     {
       id: 4,
-      title: "10 Years Anniversary Celebration",
+      title: "Many Years Anniversary Celebration",
       date: "2023/1/1",
       content:
         "To celebrate the first decade and welcome the rest of our lives together.",
-      img: "/assets/cat1.jpeg",
+      img: "/assets/cat4.jpeg",
     },
     {
       id: 5,
       title: "Many Years Later",
-      date: "2023/1/1",
+      date: "2023/10/21",
       content: "And they live happily ever after",
-      img: "/assets/cat1.jpeg",
+      img: "/assets/cat5.jpeg",
     },
   ];
   return (

@@ -17,117 +17,117 @@ export default function Memory() {
           <div className="animate-box h-[416px] w-full p-1 md:w-1/3 lg:p-[5px]">
             <div className="relative h-full w-full">
               <Image
-                src="/assets/gallery-1.jpeg"
+                src="/assets/wedding_img/36.jpg"
                 alt=""
                 fill
                 className="rounded-lg"
                 style={{ objectFit: "cover" }}
               />
-              <div className="memory-item absolute top-0 bottom-0 left-0 right-0 rounded-lg bg-black opacity-20 transition duration-300 hover:opacity-50" />
+              <div className="memory-item absolute top-0 bottom-0 left-0 right-0 rounded-lg bg-black opacity-20 duration-300 transition hover:opacity-50" />
             </div>
           </div>
 
           <div className="animate-box h-[416px] w-full p-1 md:w-1/3 lg:p-[5px]">
             <div className="relative h-full w-full">
               <Image
-                src="/assets/gallery-1.jpeg"
+                src="/assets/wedding_img/25.jpg"
                 alt=""
                 fill
                 className="rounded-lg"
                 style={{ objectFit: "cover" }}
               />
-              <div className="memory-item absolute top-0 bottom-0 left-0 right-0 rounded-lg bg-black opacity-20 transition duration-300 hover:opacity-50" />
+              <div className="memory-item absolute top-0 bottom-0 left-0 right-0 rounded-lg bg-black opacity-20 duration-300 transition hover:opacity-50" />
             </div>
           </div>
 
           <div className="animate-box h-[416px] w-full p-1 md:w-1/3 lg:p-[5px]">
             <div className="relative h-full w-full">
               <Image
-                src="/assets/gallery-1.jpeg"
+                src="/assets/wedding_img/29.jpg"
                 alt=""
                 fill
                 className="rounded-lg"
                 style={{ objectFit: "cover" }}
               />
-              <div className="memory-item absolute top-0 bottom-0 left-0 right-0 rounded-lg bg-black opacity-20 transition duration-300 hover:opacity-50" />
+              <div className="memory-item absolute top-0 bottom-0 left-0 right-0 rounded-lg bg-black opacity-20 duration-300 transition hover:opacity-50" />
             </div>
           </div>
 
           <div className="animate-box h-[416px] w-full p-1 md:w-1/3 lg:p-[5px]">
             <div className="relative h-full w-full">
               <Image
-                src="/assets/gallery-1.jpeg"
+                src="/assets/wedding_img/31.jpg"
                 alt=""
                 fill
                 className="rounded-lg"
                 style={{ objectFit: "cover" }}
               />
-              <div className="memory-item absolute top-0 bottom-0 left-0 right-0 rounded-lg bg-black opacity-20 transition duration-300 hover:opacity-50" />
+              <div className="memory-item absolute top-0 bottom-0 left-0 right-0 rounded-lg bg-black opacity-20 duration-300 transition hover:opacity-50" />
             </div>
           </div>
 
           <div className="animate-box h-[416px] w-full p-1 md:w-1/3 lg:p-[5px]">
             <div className="relative h-full w-full">
               <Image
-                src="/assets/gallery-1.jpeg"
+                src="/assets/wedding_img/34.jpg"
                 alt=""
                 fill
                 className="rounded-lg"
                 style={{ objectFit: "cover" }}
               />
-              <div className="memory-item absolute top-0 bottom-0 left-0 right-0 rounded-lg bg-black opacity-20 transition duration-300 hover:opacity-50" />
+              <div className="memory-item absolute top-0 bottom-0 left-0 right-0 rounded-lg bg-black opacity-20 duration-300 transition hover:opacity-50" />
             </div>
           </div>
 
           <div className="animate-box h-[416px] w-full p-1 md:w-1/3 lg:p-[5px]">
             <div className="relative h-full w-full">
               <Image
-                src="/assets/gallery-1.jpeg"
+                src="/assets/wedding_img/35.jpg"
                 alt=""
                 fill
                 className="rounded-lg"
                 style={{ objectFit: "cover" }}
               />
-              <div className="memory-item absolute top-0 bottom-0 left-0 right-0 rounded-lg bg-black opacity-20 transition duration-300 hover:opacity-50" />
+              <div className="memory-item absolute top-0 bottom-0 left-0 right-0 rounded-lg bg-black opacity-20 duration-300 transition hover:opacity-50" />
             </div>
           </div>
 
           <div className="animate-box h-[416px] w-full p-1 md:w-1/3 lg:p-[5px]">
             <div className="relative h-full w-full">
               <Image
-                src="/assets/gallery-1.jpeg"
+                src="/assets/wedding_img/40.jpg"
                 alt=""
                 fill
                 className="rounded-lg"
                 style={{ objectFit: "cover" }}
               />
-              <div className="memory-item absolute top-0 bottom-0 left-0 right-0 rounded-lg bg-black opacity-20 transition duration-300 hover:opacity-50" />
+              <div className="memory-item absolute top-0 bottom-0 left-0 right-0 rounded-lg bg-black opacity-20 duration-300 transition hover:opacity-50" />
             </div>
           </div>
 
           <div className="animate-box h-[416px] w-full p-1 md:w-1/3 lg:p-[5px]">
             <div className="relative h-full w-full">
               <Image
-                src="/assets/gallery-1.jpeg"
+                src="/assets/wedding_img/45.jpg"
                 alt=""
                 fill
                 className="rounded-lg"
                 style={{ objectFit: "cover" }}
               />
-              <div className="memory-item absolute top-0 bottom-0 left-0 right-0 rounded-lg bg-black opacity-20 transition duration-300 hover:opacity-50" />
+              <div className="memory-item absolute top-0 bottom-0 left-0 right-0 rounded-lg bg-black opacity-20 duration-300 transition hover:opacity-50" />
             </div>
           </div>
 
           <div className="animate-box h-[416px] w-full p-1 md:w-1/3 lg:p-[5px]">
             <div className="relative h-full w-full">
               <Image
-                src="/assets/gallery-1.jpeg"
+                src="/assets/wedding_img/HAI_0514.jpg"
                 alt=""
                 fill
                 className="rounded-lg"
                 style={{ objectFit: "cover" }}
               />
-              <div className="memory-item absolute top-0 bottom-0 left-0 right-0 rounded-lg bg-black opacity-20 transition duration-300 hover:opacity-50" />
+              <div className="memory-item absolute top-0 bottom-0 left-0 right-0 rounded-lg bg-black opacity-20 duration-300 transition hover:opacity-50" />
             </div>
           </div>
         </div>

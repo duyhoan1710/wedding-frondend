@@ -24,7 +24,7 @@ export default function Banner() {
     <div
       className="relative h-[330px] w-full overflow-y-hidden md:h-[560px] lg:h-screen"
       style={{
-        backgroundImage: "url('/assets/main.jpeg')",
+        backgroundImage: "url('/assets/wedding_img/main.jpg')",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
       }}

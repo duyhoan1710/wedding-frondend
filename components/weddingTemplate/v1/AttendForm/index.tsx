@@ -182,7 +182,7 @@ export default function AttendForm() {
           <div className="animate-box mb-6 text-left ">
             <div className="mb-2 flex items-center">
               <input
-                onClick={() => setStatus("1")}
+                onChange={() => setStatus("1")}
                 checked={status === "1"}
                 id="join"
                 type="radio"
@@ -198,7 +198,7 @@ export default function AttendForm() {
             </div>
             <div className="flex items-center">
               <input
-                onClick={() => setStatus("2")}
+                onChange={() => setStatus("2")}
                 checked={status === "2"}
                 id="cancel"
                 type="radio"
