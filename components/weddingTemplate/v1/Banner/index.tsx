@@ -35,18 +35,18 @@ export default function Banner() {
       <div className="absolute top-[20%] bottom-0 left-0 right-0 z-20 text-center text-white md:top-[18%]">
         <div className="animate-box">
           <h1 className="font-sacra text-4xl leading-tight md:text-6xl md:leading-normal lg:text-8xl">
-            Mai Tran
+            Anh Tho
           </h1>
           <h1 className="font-sacra text-2xl leading-tight md:text-6xl md:leading-normal lg:text-8xl">
             &
           </h1>
           <h1 className="font-sacra text-4xl leading-tight md:text-6xl md:leading-normal lg:text-8xl">
-            Manh Nguyen
+            Dien Nguyen
           </h1>
           <p className="mb-4 mt-3 text-sm md:mb-6 md:text-xl">
             We Are Getting Married In
           </p>
-          <Countdown targetDate="2023-10-01T23:59:59" />
+          <Countdown targetDate="2023-09-21T00:00:00" />
         </div>
       </div>
 

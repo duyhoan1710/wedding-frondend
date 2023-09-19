@@ -23,14 +23,12 @@ export default function BankAccount() {
 
         <div className="flex w-full flex-col items-center md:flex-row md:justify-around">
           <div className="animate-box mt-8 flex flex-col items-center md:mt-0 md:text-right">
-            <div className="mb-5 font-sacra text-3xl text-pink">
-              Nguyen Van Manh
-            </div>
+            <div className="mb-5 font-sacra text-3xl text-pink">Le Anh Tho</div>
             <div className="mb-5 text-xl font-semibold text-gray-c">
-              19030658278018
+              19038809919011
             </div>
             <Image
-              src="/assets/QR.png"
+              src="/assets/wedding_img/wife_qr.png"
               alt=""
               width={200}
               height={200}
@@ -40,13 +38,13 @@ export default function BankAccount() {
 
           <div className="animate-box mt-8 flex flex-col items-center md:mt-0 md:text-left">
             <div className="mb-5 font-sacra text-3xl text-pink">
-              Tran Ngoc Chi Mai
+              Nguyen Kim An Dien
             </div>
             <div className="mb-5 text-xl font-semibold text-gray-c">
-              19030658278018
+              9035643703333
             </div>
             <Image
-              src="/assets/QR.png"
+              src="/assets/wedding_img/husband_qr.png"
               alt=""
               width={200}
               height={200}

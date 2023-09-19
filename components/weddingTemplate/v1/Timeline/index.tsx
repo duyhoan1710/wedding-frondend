@@ -56,7 +56,7 @@ export default function Timeline() {
         </h2>
         <p className="mx-auto max-w-[750px] text-base leading-normal text-gray lg:text-lg">
           {
-            "Once upon a time, Mai and Manh lived their own boring lives, they didn't know anything about each other"
+            "Once upon a time, Dien and Tho lived their own boring lives, they didn't know anything about each other"
           }
         </p>
       </div>

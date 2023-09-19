@@ -40,8 +40,8 @@ export default function WeddingEvent() {
                   THỜI GIAN
                 </div>
                 <div className="text-sm font-semibold leading-relaxed text-dark-red">
-                  <p>10:30</p>
-                  <p>THỨ BẢY 18 THÁNG 2 NĂM 2023</p>
+                  <p>17:00</p>
+                  <p>Thứ 5 ngày 21 tháng 9 năm 2023</p>
                 </div>
               </div>
 
@@ -51,10 +51,12 @@ export default function WeddingEvent() {
                 </div>
                 <div>
                   <div className="text-sm font-semibold leading-relaxed text-dark-red">
-                    <p>NHÀ HÀNG ASEAN</p>
-                    <p>SỐ 9 TRUNG ĐÔ, KIM TÂN, THÀNH PHỐ LÀO CAI</p>
+                    {/* <p>NHÀ HÀNG ASEAN</p> */}
+                    <p className="uppercase">
+                      số nhà 179, tổ 15, phường yên nghĩa, hà đông, hà nội
+                    </p>
                   </div>
-                  <p>Nhấn vào đây để tìm kiếm</p>
+                  {/* <p>Nhấn vào đây để tìm kiếm</p> */}
                 </div>
               </div>
             </div>
@@ -71,8 +73,8 @@ export default function WeddingEvent() {
                   THỜI GIAN
                 </div>
                 <div className="text-sm font-semibold leading-relaxed text-dark-red">
-                  <p>10:30</p>
-                  <p>THỨ BẢY 18 THÁNG 2 NĂM 2023</p>
+                  <p>10:00</p>
+                  <p>Thứ 5 ngày 21 tháng 9 năm 2023</p>
                 </div>
               </div>
 
@@ -82,10 +84,12 @@ export default function WeddingEvent() {
                 </div>
                 <div>
                   <div className="text-sm font-semibold leading-relaxed text-dark-red">
-                    <p>ĐẠI HOÀNG SƠN OPERA WEDDING PLACE</p>
-                    <p>45 HÙNG VƯƠNG, PHƯỜNG NGÔ QUYỀN, THÀNH PHỐ BẮC GIANG</p>
+                    {/* <p>ĐẠI HOÀNG SƠN OPERA WEDDING PLACE</p> */}
+                    <p className="uppercase">
+                      Số nhà 38, tổ 22, phường phú lương, hà đông, hà nội
+                    </p>
                   </div>
-                  <p>Nhấn vào đây để tìm kiếm</p>
+                  {/* <p>Nhấn vào đây để tìm kiếm</p> */}
                 </div>
               </div>
             </div>

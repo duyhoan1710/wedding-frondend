@@ -8,7 +8,7 @@ import FadeInSection from "@/components/shared/FadeInSection";
 import "../globals.css";
 
 export const metadata = {
-  title: "Đám cưới Điền Nguyễn - Thơ Nguyễn",
+  title: "Đám cưới An Điền  - Anh Thơ",
   // description:
   //   "Precedent is the all-in-one solution for your Next.js project. It includes a design system, authentication, analytics, and more.",
   // twitter: {

@@ -13,8 +13,8 @@ export default function Foreword() {
           Trân trọng thân mời,
         </p>
         <p className="animate-box mb-5 text-lg leading-loose text-gray">
-          Mạnh Nguyễn và Mai Trần xin thân mời toàn thể anh chị em và các bạn
-          tới dự bữa tiệc thân mật mừng lễ thành hôn của chúng mình
+          Điền Nguyễn và Anh Thơ xin thân mời toàn thể anh chị em và các bạn tới
+          dự bữa tiệc thân mật mừng lễ thành hôn của chúng mình
         </p>
         <p className="animate-box text-lg leading-loose text-gray">
           Đây cũng là dịp chúng mình gửi lời cảm ơn đến tất cả anh chị em và bạn
@@ -28,7 +28,7 @@ export default function Foreword() {
         <div className="animate-box md:flex lg:w-1/2">
           <div className="mb-4 pt-4 text-center md:mt-0 md:pr-6 md:text-right">
             <div className="mt-2 mb-4 font-sacra text-3xl text-pink">
-              Manh Nguyen
+              Dien Nguyen
             </div>
             <div className="leading-loose text-gray">
               It’s not that I can’t live without you, it’s just that I don’t
@@ -58,7 +58,7 @@ export default function Foreword() {
 
           <div className="mb-4 pt-4 text-center md:mt-0 md:pl-6 md:text-left">
             <div className="mt-2 mb-4 font-sacra text-3xl text-pink">
-              Mai Tran
+              Anh Tho
             </div>
             <div className="leading-loose text-gray">
               {"True love isn't found. It's built."}
