@@ -4,7 +4,7 @@ const nextConfig = {
   swcMinify: true,
   experimental: {
     appDir: true,
-    serverComponentsExternalPackages: ["mongoose"],
+    // serverComponentsExternalPackages: ["mongoose"],
   },
   images: {
     domains: ["vercel.com"],
