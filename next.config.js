@@ -7,7 +7,7 @@ const nextConfig = {
     // serverComponentsExternalPackages: ["mongoose"],
   },
   images: {
-    domains: ["vercel.com"],
+    domains: ["anhtho-diennguyen.com"],
   },
   compiler: {
     styledComponents: {

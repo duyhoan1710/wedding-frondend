@@ -6,20 +6,14 @@ import { sfPro, inter, sacra } from "../fonts";
 import FadeInSection from "@/components/shared/FadeInSection";
 
 import "../globals.css";
+import { Metadata } from "next";
+import Head from "next/head";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Đám cưới An Điền  - Anh Thơ",
   // description:
   //   "Precedent is the all-in-one solution for your Next.js project. It includes a design system, authentication, analytics, and more.",
-  // twitter: {
-  //   card: "summary_large_image",
-  //   title: "Precedent - Building blocks for your Next.js project",
-  //   description:
-  //     "Precedent is the all-in-one solution for your Next.js project. It includes a design system, authentication, analytics, and more.",
-  //   creator: "@steventey",
-  // },
-  image: "/assets/wedding_img/37.jpg",
-  metadataBase: new URL("https://precedent.dev"),
+  metadataBase: new URL("https://anhtho-diennguyen.com"),
   themeColor: "#FFF",
 };
 
