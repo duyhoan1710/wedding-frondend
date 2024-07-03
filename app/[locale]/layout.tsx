@@ -3,9 +3,9 @@ import { notFound } from "next/navigation";
 import cx from "classnames";
 
 import { sfPro, inter, sacra } from "../fonts";
-import FadeInSection from "@/components/shared/FadeInSection";
 
 import "../globals.css";
+import FadeInSection from "@/components/common/FadeInSection";
 
 export const metadata = {
   title: "Đám cưới Điền Nguyễn - Thơ Nguyễn",

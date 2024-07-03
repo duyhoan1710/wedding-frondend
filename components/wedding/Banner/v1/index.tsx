@@ -1,11 +1,11 @@
 "use client";
 
-import FloatingElements from "@/components/shared/FloatingAnimation";
 import { useEffect, useRef } from "react";
 
-import Countdown from "../Countdown";
+import Countdown from "../../../common/Countdown";
+import FloatingElements from "@/components/common/FloatingAnimation";
 
-export default function Banner() {
+export default function BannerV1() {
   const bannerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

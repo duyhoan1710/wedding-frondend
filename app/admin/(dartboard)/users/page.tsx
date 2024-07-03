@@ -1,8 +1,8 @@
 "use client";
 
-import { DeleteIcon } from "@/components/shared/icons/deleteIcon";
-import { EditIcon } from "@/components/shared/icons/editIcon";
-import { ViewIcon } from "@/components/shared/icons/viewIcon";
+import { DeleteIcon } from "@/components/icons/deleteIcon";
+import { EditIcon } from "@/components/icons/editIcon";
+import { ViewIcon } from "@/components/icons/viewIcon";
 import { Button } from "@nextui-org/button";
 import {
   Input,

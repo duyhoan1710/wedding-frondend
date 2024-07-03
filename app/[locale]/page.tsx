@@ -1,12 +1,13 @@
-import BankAccount from "@/components/weddingTemplate/v1/BankAccount";
-import Banner from "@/components/weddingTemplate/v1/Banner";
-import Foreword from "@/components/weddingTemplate/v1/Foreword";
-import Memory from "@/components/weddingTemplate/v1/Memory";
-import Nav from "@/components/weddingTemplate/v1/Nav";
-import Timeline from "@/components/weddingTemplate/v1/Timeline";
-import WeddingEvent from "@/components/weddingTemplate/v1/WeddingEvent";
-import Footer from "@/components/weddingTemplate/v1/Footer";
 // import AttendForm from "@/components/weddingTemplate/v1/AttendForm";
+
+import BankAccount from "../../components/wedding/BankAccount/v1";
+import Banner from "../../components/wedding/Banner/v1";
+import Footer from "../../components/wedding/Footer/v1";
+import Foreword from "../../components/wedding/Foreword/v1";
+import Memory from "../../components/wedding/Memory/v1";
+import Nav from "../../components/wedding/Nav/v1";
+import Timeline from "../../components/wedding/Timeline/v1";
+import WeddingEvent from "../../components/wedding/WeddingEvent/v1";
 
 export default async function Home() {
   return (

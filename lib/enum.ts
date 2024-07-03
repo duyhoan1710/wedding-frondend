@@ -13,3 +13,8 @@ export enum EnvVariableKey {
   JWT_EXPIRES_IN = "JWT_EXPIRES_IN",
   MONGODB_URI = "MONGODB_URI",
 }
+
+export enum ERole {
+  ADMIN = "admin",
+  USER = "user",
+}

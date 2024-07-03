@@ -16,7 +16,7 @@ export default async function RootLayout({
         <Providers>
           <NavBar />
           <div className="min-h-[calc(100vh-69px)] px-12 pt-10 pb-6">
-            <Breadcrumb />
+            {/* <Breadcrumb /> */}
             {children}
           </div>
         </Providers>

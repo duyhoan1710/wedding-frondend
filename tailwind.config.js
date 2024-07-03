@@ -20,7 +20,7 @@ module.exports = {
         "pink-8": "rgba(241, 78, 149, 0.8)",
         "black-1": "rgba(255, 255, 255, 0.1)",
         "black-border": "#00000026",
-
+        "blue-active": "#0072F5",
         pink: "#f14e95",
         gray: "#828282",
         "gray-c": "#ccc",

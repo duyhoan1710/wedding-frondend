@@ -3,8 +3,8 @@
 import "../globals.css";
 import cx from "classnames";
 import { sfPro, inter, sacra } from "../fonts";
-import ReactQueryProvider from "@/components/shared/ReactQueryProvider";
 import { ToastContainer } from "react-toastify";
+import ReactQueryProvider from "@/components/common/ReactQueryProvider";
 
 export default async function RootLayout({
   children,

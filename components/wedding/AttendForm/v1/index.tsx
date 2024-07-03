@@ -1,12 +1,12 @@
 "use client";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectCards } from "swiper/modules";
+import { EffectCards } from "swiper";
 import Image from "next/image";
 import { useState } from "react";
 import * as attendFormFetcher from "@/lib/fetchers/formExcel";
-import Spinner from "@/components/shared/Spinner";
 import { twMerge } from "tailwind-merge";
+import { LoadingSpinner } from "@/components/icons";
 
 const quoteLove = [
   "Tình yêu là một bức tranh được thêu bởi thiên nhiên và được trang trí bằng những sợi tưởng tượng.",
@@ -220,7 +220,7 @@ export default function AttendForm() {
               "animate-box flex h-10 w-28 items-center justify-center rounded bg-pink py-2 px-8 text-white duration-200 transition-all hover:opacity-70",
             )}
           >
-            {isLoading ? <Spinner /> : "Gửi"}
+            {isLoading ? <LoadingSpinner /> : "Gửi"}
           </button>
         </div>
       </div>
