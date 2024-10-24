@@ -5,7 +5,6 @@ import cx from "classnames";
 import { sfPro, inter, sacra } from "../fonts";
 
 import "../globals.css";
-import FadeInSection from "@/components/common/FadeInSection";
 
 export const metadata = {
   title: "Đám cưới Điền Nguyễn - Thơ Nguyễn",
@@ -39,9 +38,7 @@ export default async function RootLayout({
   return (
     <html lang={locale}>
       <body className={cx(sfPro.variable, inter.variable, sacra.variable)}>
-        <main className="min-h-screen w-full">
-          <FadeInSection>{children}</FadeInSection>
-        </main>
+        <main className="min-h-screen w-full">{children}</main>
       </body>
     </html>
   );

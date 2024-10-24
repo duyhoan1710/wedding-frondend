@@ -1,6 +1,6 @@
 import { useTranslations } from "next-intl";
 
-export default function Nav() {
+export default function NavV1() {
   const t = useTranslations("Index");
 
   return (

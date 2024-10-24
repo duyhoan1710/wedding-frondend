@@ -1,4 +1,8 @@
-export default function Footer() {
+export interface IFooterV1 {}
+
+export const DEFAULT_DATA_FOOTER_V1 = {};
+
+export default function FooterV1(props: IFooterV1) {
   return (
     <div className="px-5 pt-32 pb-48 text-center">
       <div>

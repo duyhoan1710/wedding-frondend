@@ -6,6 +6,17 @@
 @import "swiper/css";
 @import "swiper/css/effect-cards";
 
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
+  }
+}
+
 @layer base {
   @font-face {
     font-family: "Work Sans";
@@ -38,5 +49,20 @@
       width: 400px;
       height: 580px;
     }
+  }
+
+  div::-webkit-scrollbar-track {
+    border-radius: 2px;
+    background-color: #F5F5F5;
+  }
+
+  div::-webkit-scrollbar {
+    width: 8px;
+    background-color: #F5F5F5;
+  }
+
+  div::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    background-color: #8a8686;
   }
 }

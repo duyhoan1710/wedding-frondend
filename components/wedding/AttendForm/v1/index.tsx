@@ -1,12 +1,12 @@
 "use client";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectCards } from "swiper";
 import Image from "next/image";
 import { useState } from "react";
-import * as attendFormFetcher from "@/lib/fetchers/formExcel";
+import * as attendFormFetcher from "@/lib/fetchers";
 import { twMerge } from "tailwind-merge";
 import { LoadingSpinner } from "@/components/icons";
+import { EffectCards } from "swiper";
 
 const quoteLove = [
   "Tình yêu là một bức tranh được thêu bởi thiên nhiên và được trang trí bằng những sợi tưởng tượng.",
@@ -20,7 +20,7 @@ const quoteLove = [
   "Hạnh phúc cao nhất của cuộc đời là niềm tin rằng chúng ta được yêu; yêu vì chính bản chất chúng ta, hoặc đúng hơn, yêu bất chấp khuyết điểm của chúng ta.",
 ];
 
-export default function AttendForm() {
+export default function AttendFormV1() {
   const [slideIndex, setSlideIndex] = useState(0);
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -29,11 +29,11 @@ export default function AttendForm() {
 
   const onSubmitForm = async () => {
     setIsLoading(true);
-    await attendFormFetcher.submitAttendForm({
-      name,
-      phone,
-      status: status === "1" ? "Tham Dự" : "Không Tham Dự",
-    });
+    // await attendFormFetcher.submitAttendForm({
+    //   name,
+    //   phone,
+    //   status: status === "1" ? "Tham Dự" : "Không Tham Dự",
+    // });
     setIsLoading(false);
     setName("");
     setPhone("");

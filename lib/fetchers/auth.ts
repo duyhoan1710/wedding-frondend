@@ -1,6 +1,5 @@
 import { fetchWrapper } from "../fetchWrapper";
-
-const SERVER_ENDPOINT = process.env.SERVER_ENDPOINT || "http://localhost:3000";
+import { IAuth } from "../interfaces/auth";
 
 export const login = async ({
   email,
@@ -9,24 +8,32 @@ export const login = async ({
   email: string;
   password: string;
 }) => {
-  return fetchWrapper.post(`${SERVER_ENDPOINT}/api/auth/login`, {
-    email,
-    password,
-  });
+  return fetchWrapper.post<IAuth>(
+    `login`,
+    {
+      email,
+      password,
+    },
+    { public: true },
+  );
 };
 
 export const register = async ({
   email,
-  fullName,
+  name,
   password,
 }: {
   email: string;
-  fullName: string;
+  name: string;
   password: string;
 }) => {
-  return fetchWrapper.post(`${SERVER_ENDPOINT}/api/auth/register`, {
-    email,
-    fullName,
-    password,
-  });
+  return fetchWrapper.post(
+    `signup`,
+    {
+      email,
+      name,
+      password,
+    },
+    { public: true },
+  );
 };

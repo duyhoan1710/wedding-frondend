@@ -18,3 +18,24 @@ export enum ERole {
   ADMIN = "admin",
   USER = "user",
 }
+
+export enum EHeader {
+  PATHNAME = "x-pathname",
+  INVOKE_PATH = "x-invoke-path",
+}
+
+export enum EComponentCode {
+  BANNER_V1 = "banner_v1",
+
+  FOREWORD_V1 = "foreword_v1",
+
+  ADDRESS_V1 = "address_v1",
+
+  TIMELINE_V1 = "timeline_v1",
+
+  IMAGES_V1 = "images_v1",
+
+  BANK_ACCOUNT_v1 = "bank_account_v1",
+
+  FOOTER_V1 = "footer_v1",
+}

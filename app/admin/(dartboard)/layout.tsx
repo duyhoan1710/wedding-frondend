@@ -1,7 +1,7 @@
 import { Providers } from "./providers";
-import Sidebar from "./layout/Sidebar";
-import NavBar from "./layout/NavBar";
-import Breadcrumb from "./layout/Breadcrumb";
+import Sidebar from "./common/Sidebar";
+import NavBar from "./common/NavBar";
+import Breadcrumb from "./common/Breadcrumb";
 
 export default async function RootLayout({
   children,

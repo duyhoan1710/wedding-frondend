@@ -1,8 +1,23 @@
 import Image from "next/image";
 
 import { ForewordStyled } from "./styled";
+import { getImage } from "@/lib/utils";
 
-export default function Foreword() {
+export interface IForeWordV1 {
+  husbandName: string;
+  wifeName: string;
+  husbandImage: string;
+  wifeImage: string;
+}
+
+export const DEFAULT_DATA_FOREWORD_V1 = {
+  husbandName: "",
+  wifeName: "",
+  husbandImage: "",
+  wifeImage: "",
+};
+
+export default function ForewordV1(props: IForeWordV1) {
   return (
     <ForewordStyled className="container flex flex-col items-center justify-center py-16 px-5 md:px-10">
       <div className="mb-20 w-full max-w-[750px]">
@@ -13,8 +28,9 @@ export default function Foreword() {
           Trân trọng thân mời,
         </p>
         <p className="animate-box mb-5 text-lg leading-loose text-gray">
-          Mạnh Nguyễn và Mai Trần xin thân mời toàn thể anh chị em và các bạn
-          tới dự bữa tiệc thân mật mừng lễ thành hôn của chúng mình
+          {props.husbandName} và {props.wifeName} xin thân mời toàn thể anh chị
+          em và các bạn tới dự bữa tiệc thân mật mừng lễ thành hôn của chúng
+          mình
         </p>
         <p className="animate-box text-lg leading-loose text-gray">
           Đây cũng là dịp chúng mình gửi lời cảm ơn đến tất cả anh chị em và bạn
@@ -28,7 +44,7 @@ export default function Foreword() {
         <div className="animate-box md:flex lg:w-1/2">
           <div className="mb-4 pt-4 text-center md:mt-0 md:pr-6 md:text-right">
             <div className="mt-2 mb-4 font-sacra text-3xl text-pink">
-              Manh Nguyen
+              {props.husbandName}
             </div>
             <div className="leading-loose text-gray">
               It’s not that I can’t live without you, it’s just that I don’t
@@ -37,7 +53,7 @@ export default function Foreword() {
           </div>
 
           <Image
-            src="/assets/wedding_img/husband.png"
+            src={getImage(props.husbandImage)}
             alt=""
             height={120}
             width={120}
@@ -49,7 +65,7 @@ export default function Foreword() {
 
         <div className="animate-box md:flex lg:w-1/2">
           <Image
-            src="/assets/wedding_img/wife.png"
+            src={getImage(props.wifeImage)}
             alt=""
             height={120}
             width={120}
@@ -58,10 +74,10 @@ export default function Foreword() {
 
           <div className="mb-4 pt-4 text-center md:mt-0 md:pl-6 md:text-left">
             <div className="mt-2 mb-4 font-sacra text-3xl text-pink">
-              Mai Tran
+              {props.wifeName}
             </div>
             <div className="leading-loose text-gray">
-              {"True love isn't found. It's built."}
+              True love isn't found. It's built.
             </div>
           </div>
         </div>

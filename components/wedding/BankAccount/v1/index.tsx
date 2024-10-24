@@ -1,10 +1,31 @@
+import { getImage } from "@/lib/utils";
 import Image from "next/image";
 
-export default function BankAccount() {
+export interface IBankAccountV1 {
+  background: string;
+  husbandBankAccountName: string;
+  husbandBankAccountNumber: string;
+  husbandBankAccountImage: string;
+  wifeBankAccountName: string;
+  wifeBankAccountNumber: string;
+  wifeBankAccountImage: string;
+}
+
+export const DEFAULT_DATA_BANK_ACCOUNT_V1 = {
+  background: "",
+  husbandBankAccountName: "",
+  husbandBankAccountNumber: "",
+  husbandBankAccountImage: "",
+  wifeBankAccountName: "",
+  wifeBankAccountNumber: "",
+  wifeBankAccountImage: "",
+};
+
+export default function BankAccountV1(props: IBankAccountV1) {
   return (
     <div className="relative flex h-[954px] w-full justify-center md:h-[698px]">
       <Image
-        src="/assets/img_bg.jpeg"
+        src={getImage(props.background)}
         alt=""
         fill
         style={{ objectFit: "cover" }}
@@ -24,13 +45,13 @@ export default function BankAccount() {
         <div className="flex w-full flex-col items-center md:flex-row md:justify-around">
           <div className="animate-box mt-8 flex flex-col items-center md:mt-0 md:text-right">
             <div className="mb-5 font-sacra text-3xl text-pink">
-              Nguyen Van Manh
+              {props.husbandBankAccountName}
             </div>
             <div className="mb-5 text-xl font-semibold text-gray-c">
-              19030658278018
+              {props.husbandBankAccountNumber}
             </div>
             <Image
-              src="/assets/QR.png"
+              src={getImage(props.husbandBankAccountImage)}
               alt=""
               width={200}
               height={200}
@@ -40,13 +61,13 @@ export default function BankAccount() {
 
           <div className="animate-box mt-8 flex flex-col items-center md:mt-0 md:text-left">
             <div className="mb-5 font-sacra text-3xl text-pink">
-              Tran Ngoc Chi Mai
+              {props.wifeBankAccountName}
             </div>
             <div className="mb-5 text-xl font-semibold text-gray-c">
-              19030658278018
+              {props.wifeBankAccountNumber}
             </div>
             <Image
-              src="/assets/QR.png"
+              src={getImage(props.wifeBankAccountImage)}
               alt=""
               width={200}
               height={200}

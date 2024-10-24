@@ -40,6 +40,8 @@ module.exports = {
         "red-700": "#F31260",
         "yellow-200": "#FDEFD8",
         "yellow-700": "#B97509",
+        "color-border": "#e6e6e6",
+        "gray-secondary": "#00000080",
       },
       fontFamily: {
         display: ["var(--font-sf)", "system-ui", "sans-serif"],

@@ -3,7 +3,27 @@ import dayjs from "dayjs";
 
 import { TimelineStyled } from "./styled";
 
-export default function Timeline() {
+export interface ITImelineItemV1 {
+  title: string;
+  date: string;
+  content: string;
+  image: string;
+}
+
+export type ITimelineV1 = { timelines: ITImelineItemV1[] };
+
+export const DEFAULT_DATA_TIMELINE_V1 = {
+  timelines: [
+    {
+      title: "",
+      date: "",
+      content: "",
+      image: "",
+    },
+  ],
+};
+
+export default function TimelineV1(props: ITimelineV1) {
   const timelineData = [
     {
       id: 1,
@@ -62,9 +82,9 @@ export default function Timeline() {
       </div>
 
       <div className="timeline relative py-5">
-        {timelineData.map((item, index) => (
+        {props.timelines.map((item, index) => (
           <div
-            key={item.id}
+            key={index}
             className={`animate-box timeline-wrap mb-7 flex items-start justify-around md:items-center md:justify-center ${
               index % 2 === 1 ? "lg:flex-row-reverse" : ""
             }`}
@@ -80,7 +100,7 @@ export default function Timeline() {
             </div>
 
             <Image
-              src={item.img}
+              src={item.image}
               alt={item.title}
               className="z-10 mt-3 h-[80px] w-[80px] rounded-full md:mx-8 md:mt-0 md:h-[160px] md:w-[160px]"
               width={160}
