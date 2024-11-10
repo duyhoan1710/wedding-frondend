@@ -1,5 +1,9 @@
+import { WidthContext } from "@/app/[locale]/(dashboard)/templates/[slug]/PreviewTemplateProvider";
+import { EWindowSize } from "@/lib/enum";
 import { getImage } from "@/lib/utils";
+import classNames from "classnames";
 import Image from "next/image";
+import { useContext } from "react";
 
 export interface IBankAccountV1 {
   background: string;
@@ -22,8 +26,15 @@ export const DEFAULT_DATA_BANK_ACCOUNT_V1 = {
 };
 
 export default function BankAccountV1(props: IBankAccountV1) {
+  const { width } = useContext(WidthContext);
+
   return (
-    <div className="relative flex h-[954px] w-full justify-center md:h-[698px]">
+    <div
+      className={classNames(
+        "relative flex h-[954px] w-full justify-center ",
+        width >= EWindowSize.MD && "md:h-[698px]",
+      )}
+    >
       <Image
         src={getImage(props.background)}
         alt=""
@@ -34,16 +45,36 @@ export default function BankAccountV1(props: IBankAccountV1) {
 
       <div className="absolute flex h-full w-full max-w-[1140px] flex-col items-center justify-center px-5 text-center">
         <div className="animate-box px-2 md:mb-10">
-          <h2 className="font-sacra text-[40px] font-bold leading-normal text-white lg:mb-5 lg:text-6xl">
+          <h2
+            className={classNames(
+              "font-sacra text-[40px] font-bold leading-normal text-white",
+              width >= EWindowSize.LG && "lg:mb-5 lg:text-6xl",
+            )}
+          >
             Thông Tin Ngân Hàng
           </h2>
-          <p className="text-lg text-gray md:text-xl">
+          <p
+            className={classNames(
+              "text-lg text-gray",
+              width >= EWindowSize.MD && "md:text-xl",
+            )}
+          >
             Dành cho các tín đồ hệ không dùng tiền mặt.
           </p>
         </div>
 
-        <div className="flex w-full flex-col items-center md:flex-row md:justify-around">
-          <div className="animate-box mt-8 flex flex-col items-center md:mt-0 md:text-right">
+        <div
+          className={classNames(
+            "flex w-full flex-col items-center",
+            width >= EWindowSize.MD && "md:flex-row md:justify-around",
+          )}
+        >
+          <div
+            className={classNames(
+              "animate-box mt-8 flex flex-col items-center",
+              width >= EWindowSize.MD && "md:mt-0 md:text-right",
+            )}
+          >
             <div className="mb-5 font-sacra text-3xl text-pink">
               {props.husbandBankAccountName}
             </div>
@@ -59,7 +90,12 @@ export default function BankAccountV1(props: IBankAccountV1) {
             />
           </div>
 
-          <div className="animate-box mt-8 flex flex-col items-center md:mt-0 md:text-left">
+          <div
+            className={classNames(
+              "animate-box mt-8 flex flex-col items-center",
+              width >= EWindowSize.MD && "md:mt-0 md:text-left",
+            )}
+          >
             <div className="mb-5 font-sacra text-3xl text-pink">
               {props.wifeBankAccountName}
             </div>

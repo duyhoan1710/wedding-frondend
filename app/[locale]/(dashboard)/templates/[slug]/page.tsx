@@ -1,8 +1,7 @@
 "use client";
 
-import { v4 as uuidv4 } from "uuid";
 import { ButtonCustom } from "@/components/common/Button";
-import { WeddingComponent, findComponentByCode } from "@/components/wedding";
+import { WeddingComponent, findComponentByCode } from "./ListComponents";
 import {
   DndContext,
   DragEndEvent,
@@ -15,23 +14,18 @@ import {
   useSensors,
 } from "@dnd-kit/core";
 import { useMemo, useState } from "react";
-import {
-  SortableContext,
-  arrayMove,
-  sortableKeyboardCoordinates,
-  verticalListSortingStrategy,
-} from "@dnd-kit/sortable";
-import SortableItem from "@/components/common/Dnd/SortableItem";
-import classNames from "classnames";
+import { arrayMove, sortableKeyboardCoordinates } from "@dnd-kit/sortable";
+
 import { EComponentCode } from "@/lib/enum";
 import { IBannerV1 } from "@/components/wedding/Banner/v1";
 import { IForeWordV1 } from "@/components/wedding/Foreword/v1";
 import { ITimelineV1 } from "@/components/wedding/Timeline/v1";
 import { IImagesV1 } from "@/components/wedding/Images/v1";
 import { IAddressV1 } from "@/components/wedding/Address/v1";
-import { BankAccountEditerV1 } from "@/components/wedding/BankAccount/v1/Editer";
 import { IBankAccountV1 } from "@/components/wedding/BankAccount/v1";
 import { IFooterV1 } from "@/components/wedding/Footer/v1";
+import { PreviewTemplate } from "./PreviewTemplate";
+import { PreviewTemplateProvider } from "./PreviewTemplateProvider";
 
 export type ITemplate =
   | {
@@ -76,16 +70,16 @@ export default function TemplateDetail() {
 
   const [templates, setTemplates] = useState<ITemplate[]>([]);
 
+  const { setNodeRef } = useDroppable({
+    id: "preview",
+  });
+
   const sensors = useSensors(
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, {
       coordinateGetter: sortableKeyboardCoordinates,
     }),
   );
-
-  const { isOver, setNodeRef } = useDroppable({
-    id: "root",
-  });
 
   function handleDragOver(event: DragOverEvent) {
     const { active, over, activatorEvent } = event as any;
@@ -98,8 +92,8 @@ export default function TemplateDetail() {
     if (
       activeData?.current?.sortable?.containerId ===
         overData?.current?.sortable?.containerId ||
-      (activeData?.current?.sortable?.containerId === "root" &&
-        ["component-list", undefined].includes(
+      (activeData?.current?.sortable?.containerId === "preview" &&
+        ["components", undefined].includes(
           overData?.current?.sortable?.containerId,
         ))
     ) {
@@ -121,7 +115,7 @@ export default function TemplateDetail() {
       const newIndex =
         overIndex >= 0 ? overIndex + modifier : overItems.length + 1;
 
-      const { defaultData } = findComponentByCode(activeId as string);
+      const { defaultData } = findComponentByCode(activeId);
 
       overItems.splice(newIndex, 0, {
         id: activeId,
@@ -131,6 +125,7 @@ export default function TemplateDetail() {
 
       return overItems;
     });
+    setSelectedComponentId(activeId);
   }
 
   function handleDragEnd(event: DragEndEvent) {
@@ -151,12 +146,12 @@ export default function TemplateDetail() {
     setTemplates((pre: ITemplate[]) => {
       const overItems = [...pre];
 
-      const activeIndex = overItems.indexOf(activeId);
-      const overIndex = overItems.indexOf(overId);
+      const activeIndex = [...overItems].map(({ id }) => id).indexOf(activeId);
+      const overIndex = [...overItems].map(({ id }) => id).indexOf(overId);
 
       return arrayMove(overItems, activeIndex, overIndex);
     });
-    setSelectedComponentId(overData.current.code);
+    setSelectedComponentId(activeData.current.code);
   }
 
   function handleDragStart(event: DragEndEvent) {}
@@ -166,8 +161,6 @@ export default function TemplateDetail() {
 
     return findComponentByCode(selectedComponentId)?.EditerComponent;
   }, [selectedComponentId]);
-
-  console.log(templates, selectedComponentId);
 
   return (
     <div className="min-h-screen">
@@ -191,37 +184,12 @@ export default function TemplateDetail() {
             </div>
 
             <div className="flex h-[calc(100vh-72px)] grow overflow-y-scroll py-2 px-8">
-              <SortableContext
-                id="root"
-                items={templates}
-                strategy={verticalListSortingStrategy}
-              >
-                <div
-                  ref={setNodeRef}
-                  className={classNames(
-                    "h-full w-full rounded border border-color-border",
-                    isOver ? "border-green-400" : "",
-                  )}
-                >
-                  {templates.map(({ id, code }) => (
-                    <SortableItem key={id} id={id} code={code}>
-                      {(() => {
-                        const { Component } = findComponentByCode(code);
-
-                        const props = templates.find(
-                          (template) => template.code === code,
-                        )!.data as any;
-
-                        return (
-                          <div className="m-2 h-fit rounded border border-color-border">
-                            <Component {...props} />
-                          </div>
-                        );
-                      })()}
-                    </SortableItem>
-                  ))}
-                </div>
-              </SortableContext>
+              <PreviewTemplateProvider>
+                <PreviewTemplate
+                  templates={templates}
+                  setNodeRef={setNodeRef}
+                />
+              </PreviewTemplateProvider>
             </div>
           </DndContext>
         </div>

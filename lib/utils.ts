@@ -1,4 +1,5 @@
 import ms from "ms";
+import { EWindowSize } from "./enum";
 
 export const timeAgo = (timestamp: Date, timeOnly?: boolean): string => {
   if (!timestamp) return "never";
@@ -20,5 +21,5 @@ export const truncate = (str: string, length: number) => {
 export const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 export const getImage = (url: string) => {
-  return process.env.NEXT_PUBLIC_SERVER_IMAGE + url;
+  return process.env.NEXT_PUBLIC_SERVER_IMAGE + "/" + url;
 };

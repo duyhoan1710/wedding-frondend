@@ -1,5 +1,11 @@
+"use client";
+
+import { WidthContext } from "@/app/[locale]/(dashboard)/templates/[slug]/PreviewTemplateProvider";
+import { EWindowSize } from "@/lib/enum";
 import { getImage } from "@/lib/utils";
+import classNames from "classnames";
 import Image from "next/image";
+import { useContext } from "react";
 
 export interface IAddressV1 {
   backgroundLeft: string;
@@ -24,10 +30,24 @@ export const DEFAULT_DATA_ADDRESS_V1 = {
 };
 
 export default function AddressV1(props: IAddressV1) {
+  const { width = window?.screen?.width } = useContext(WidthContext);
+
   return (
-    <div className="relative h-[821px] w-full md:h-[724px] xl:h-[628px] 2xl:h-[821px]">
+    <div
+      className={classNames(
+        "relative h-[821px] w-full",
+        width >= EWindowSize.MD && "md:h-[724px]",
+        width >= EWindowSize.XL && "xl:h-[628px]",
+        width >= EWindowSize.XXL && "2xl:h-[821px]",
+      )}
+    >
       <div className="flex h-full">
-        <div className="relative h-full w-full lg:w-[55%]">
+        <div
+          className={classNames(
+            "relative h-full w-full ",
+            width >= EWindowSize.LG && "lg:w-[55%]",
+          )}
+        >
           <Image
             src={getImage(props.backgroundLeft)}
             alt=""
@@ -36,7 +56,12 @@ export default function AddressV1(props: IAddressV1) {
           />
         </div>
 
-        <div className="relative hidden h-full lg:block lg:w-[45%]">
+        <div
+          className={classNames(
+            "relative h-full w-full",
+            width >= EWindowSize.LG && "lg:w-[45%]",
+          )}
+        >
           <Image
             src={getImage(props.backgroundRight)}
             alt=""
@@ -46,8 +71,18 @@ export default function AddressV1(props: IAddressV1) {
         </div>
       </div>
 
-      <div className="absolute top-0 z-10 flex h-full w-full flex-col items-center justify-center px-3 py-8 text-center lg:w-[55%]">
-        <h2 className="animate-box mb-3 font-sacra text-5xl font-bold leading-normal text-white lg:text-6xl">
+      <div
+        className={classNames(
+          "absolute top-0 z-10 flex h-full w-full flex-col items-center justify-center px-3 py-8 text-center",
+          width >= EWindowSize.LG && "lg:w-[55%]",
+        )}
+      >
+        <h2
+          className={classNames(
+            "animate-box mb-3 font-sacra text-5xl font-bold leading-normal text-white",
+            width >= EWindowSize.LG && "lg:text-6xl",
+          )}
+        >
           Wedding Event
         </h2>
 

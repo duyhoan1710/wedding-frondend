@@ -1,12 +1,5 @@
 "use client";
 
-import AddressV1, { DEFAULT_DATA_ADDRESS_V1 } from "./Address/v1";
-import BankAccountV1, { DEFAULT_DATA_BANK_ACCOUNT_V1 } from "./BankAccount/v1";
-import FooterV1, { DEFAULT_DATA_FOOTER_V1 } from "./Footer/v1";
-import ForewordV1, { DEFAULT_DATA_FOREWORD_V1 } from "./Foreword/v1";
-import ImagesV1, { DEFAULT_DATA_IMAGES_V1 } from "./Images/v1";
-import TimelineV1, { DEFAULT_DATA_TIMELINE_V1 } from "./Timeline/v1";
-import BannerV1, { DEFAULT_DATA_BANNER_V1 } from "./Banner/v1";
 import { AiOutlinePlus } from "react-icons/ai";
 
 import ImageBannerV1 from "@/assets/wedding_img/banner-v1.png";
@@ -16,18 +9,41 @@ import ImageTimelineV1 from "@/assets/wedding_img/memory-v1.png";
 import ImageImagesV1 from "@/assets/wedding_img/images-v1.png";
 import ImageBankAccountV1 from "@/assets/wedding_img/bank-account-v1.png";
 import ImageFooterV1 from "@/assets/wedding_img/footer-v1.png";
-import { ImageZoomCustom } from "../common/ImageZoom";
-import { Sortable } from "../common/Dnd/Sortable";
-import SortableItem from "../common/Dnd/SortableItem";
+
 import { useEffect, useState } from "react";
 import { EComponentCode } from "@/lib/enum";
-import { BannerEditerV1 } from "./Banner/v1/Editer";
-import { ForewordEditerV1 } from "./Foreword/v1/Editer";
-import { AddressEditerV1 } from "./Address/v1/Editer";
-import { TimelineEditerV1 } from "./Timeline/v1/Editer";
-import { ImagesEditerV1 } from "./Images/v1/Editer";
-import { BankAccountEditerV1 } from "./BankAccount/v1/Editer";
+
 import { IComponent, IComponents } from "@/lib/interfaces";
+import { Sortable } from "@/components/common/Dnd/Sortable";
+import SortableItem from "@/components/common/Dnd/SortableItem";
+import { ImageZoomCustom } from "@/components/common/ImageZoom";
+import AddressV1, {
+  DEFAULT_DATA_ADDRESS_V1,
+} from "@/components/wedding/Address/v1";
+import { AddressEditerV1 } from "@/components/wedding/Address/v1/Editer";
+import BankAccountV1, {
+  DEFAULT_DATA_BANK_ACCOUNT_V1,
+} from "@/components/wedding/BankAccount/v1";
+import { BankAccountEditerV1 } from "@/components/wedding/BankAccount/v1/Editer";
+import BannerV1, {
+  DEFAULT_DATA_BANNER_V1,
+} from "@/components/wedding/Banner/v1";
+import { BannerEditerV1 } from "@/components/wedding/Banner/v1/Editer";
+import FooterV1, {
+  DEFAULT_DATA_FOOTER_V1,
+} from "@/components/wedding/Footer/v1";
+import ForewordV1, {
+  DEFAULT_DATA_FOREWORD_V1,
+} from "@/components/wedding/Foreword/v1";
+import { ForewordEditerV1 } from "@/components/wedding/Foreword/v1/Editer";
+import ImagesV1, {
+  DEFAULT_DATA_IMAGES_V1,
+} from "@/components/wedding/Images/v1";
+import { ImagesEditerV1 } from "@/components/wedding/Images/v1/Editer";
+import TimelineV1, {
+  DEFAULT_DATA_TIMELINE_V1,
+} from "@/components/wedding/Timeline/v1";
+import { TimelineEditerV1 } from "@/components/wedding/Timeline/v1/Editer";
 
 export const allComponents: IComponents = [
   {
@@ -161,7 +177,7 @@ export function WeddingComponent() {
 
   return (
     <div className="h-full rounded border border-color-border p-2">
-      <Sortable items={[]} id="component-list">
+      <Sortable items={[]} id="components">
         {allComponents.map((component) => (
           <div key={component.name} className="mb-2">
             <div className=" mb-2 font-semibold">{component.name}</div>

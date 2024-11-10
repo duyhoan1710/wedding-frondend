@@ -2,6 +2,10 @@ import Image from "next/image";
 
 import { ForewordStyled } from "./styled";
 import { getImage } from "@/lib/utils";
+import { WidthContext } from "@/app/[locale]/(dashboard)/templates/[slug]/PreviewTemplateProvider";
+import { useContext } from "react";
+import { EWindowSize } from "@/lib/enum";
+import classNames from "classnames";
 
 export interface IForeWordV1 {
   husbandName: string;
@@ -18,10 +22,22 @@ export const DEFAULT_DATA_FOREWORD_V1 = {
 };
 
 export default function ForewordV1(props: IForeWordV1) {
+  const { width } = useContext(WidthContext);
+
   return (
-    <ForewordStyled className="container flex flex-col items-center justify-center py-16 px-5 md:px-10">
+    <ForewordStyled
+      className={classNames(
+        "container flex flex-col items-center justify-center py-16 px-5",
+        width >= EWindowSize.MD && "md:px-10",
+      )}
+    >
       <div className="mb-20 w-full max-w-[750px]">
-        <h2 className="animate-box mb-2 font-sacra text-[40px] font-bold leading-normal text-pink md:text-6xl">
+        <h2
+          className={classNames(
+            "animate-box mb-2 font-sacra text-[40px] font-bold leading-normal text-pink",
+            width >= EWindowSize.MD && "md:text-6xl",
+          )}
+        >
           Dear all,
         </h2>
         <p className="animate-box mb-5 text-lg italic leading-loose text-gray">
@@ -40,9 +56,25 @@ export default function ForewordV1(props: IForeWordV1) {
         </p>
       </div>
 
-      <div className="relative w-full max-w-[1040px] lg:flex">
-        <div className="animate-box md:flex lg:w-1/2">
-          <div className="mb-4 pt-4 text-center md:mt-0 md:pr-6 md:text-right">
+      <div
+        className={classNames(
+          "relative w-full max-w-[1040px]",
+          width >= EWindowSize.LG && "lg:flex",
+        )}
+      >
+        <div
+          className={classNames(
+            "animate-box",
+            width >= EWindowSize.MD && "md:flex ",
+            width >= EWindowSize.LG && "lg:w-1/2"
+          )}
+        >
+          <div
+            className={classNames(
+              "mb-4 pt-4 text-center",
+              width >= EWindowSize.MD && "md:mt-0 md:pr-6 md:text-right",
+            )}
+          >
             <div className="mt-2 mb-4 font-sacra text-3xl text-pink">
               {props.husbandName}
             </div>
@@ -57,22 +89,42 @@ export default function ForewordV1(props: IForeWordV1) {
             alt=""
             height={120}
             width={120}
-            className="mx-auto rounded-full md:mx-0 md:h-[150px] md:w-[150px]"
+            className={classNames(
+              "mx-auto rounded-full",
+              width >= EWindowSize.MD && "md:mx-0 md:h-[150px] md:w-[150px]",
+            )}
           />
         </div>
 
-        <i className="animate-box heart absolute top-[calc(50%-10px)] left-[calc(50%-24px)] z-10 h-12 w-12 animate-s-pulse rounded-full bg-white p-3 md:hidden lg:left-[calc(50%-30px)] lg:top-[calc(50%-30px)] lg:block lg:h-16 lg:w-16 lg:p-5" />
+        <i className={classNames(
+            "animate-box heart absolute top-[calc(50%-10px)] left-[calc(50%-24px)] z-10 h-12 w-12 animate-s-pulse rounded-full bg-white p-3",
+            width >= EWindowSize.MD && "md:hidden",
+            width >= EWindowSize.LG && "lg:left-[calc(50%-30px)] lg:top-[calc(50%-30px)] lg:block lg:h-16 lg:w-16 lg:p-5",
+          )} />
 
-        <div className="animate-box md:flex lg:w-1/2">
+        <div className={classNames(
+            "animate-box",
+            width >= EWindowSize.MD && "md:flex",
+            width >= EWindowSize.LG && "lg:w-1/2",
+          )}
+        >
           <Image
             src={getImage(props.wifeImage)}
             alt=""
             height={120}
             width={120}
-            className="mx-auto rounded-full md:mx-0 md:h-[150px] md:w-[150px]"
+            className={classNames(
+              "mx-auto rounded-full",
+              width >= EWindowSize.MD && "md:mx-0 md:h-[150px] md:w-[150px]",
+            )}
           />
 
-          <div className="mb-4 pt-4 text-center md:mt-0 md:pl-6 md:text-left">
+          <div
+            className={classNames(
+              "mb-4 pt-4 text-center",
+              width >= EWindowSize.MD && "md:mt-0 md:pl-6 md:text-left",
+            )}
+          >
             <div className="mt-2 mb-4 font-sacra text-3xl text-pink">
               {props.wifeName}
             </div>

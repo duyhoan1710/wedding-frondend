@@ -39,3 +39,11 @@ export enum EComponentCode {
 
   FOOTER_V1 = "footer_v1",
 }
+
+export enum EWindowSize {
+  SM = 640,
+  MD = 768,
+  LG = 1024,
+  XL = 1280,
+  XXL = 1536,
+}
