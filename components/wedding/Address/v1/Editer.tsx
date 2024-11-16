@@ -9,8 +9,16 @@ import { IAddressV1 } from ".";
 import { InputImageCustom } from "@/components/common/InputImage";
 import { DatePickerCustom } from "@/components/common/Datepicker";
 import { TextAreaCustom } from "@/components/common/Textarea";
+import { ITemplate } from "@/app/[locale]/(dashboard)/templates/[slug]/page";
+import { Dispatch, SetStateAction, useEffect } from "react";
+import { EComponentCode } from "@/lib/enum";
+import { cleanObj, formatDate, formatDateString } from "@/lib/utils";
 
-export function AddressEditerV1(props: { data?: IAddressV1 }) {
+export function AddressEditerV1(props: {
+  code: EComponentCode;
+  data?: IAddressV1;
+  setData: Dispatch<SetStateAction<ITemplate[]>>;
+}) {
   const schema = yup.object().shape({
     backgroundLeft: yup.string().required("Required field"),
     backgroundRight: yup.string().required("Required field"),
@@ -23,6 +31,7 @@ export function AddressEditerV1(props: { data?: IAddressV1 }) {
   });
 
   const {
+    setValue,
     register,
     formState: { errors },
     getValues,
@@ -30,6 +39,20 @@ export function AddressEditerV1(props: { data?: IAddressV1 }) {
     mode: "onChange",
     resolver: yupResolver(schema),
   });
+
+  useEffect(() => {
+    const tempData = getValues();
+
+    props.setData((pre: ITemplate[]) => {
+      return [...pre].map((template) => {
+        if (template.code === props.code) {
+          return { ...template, data: cleanObj(tempData) } as ITemplate;
+        }
+
+        return template;
+      });
+    });
+  }, [JSON.stringify(getValues())]);
 
   return (
     <div>
@@ -57,7 +80,14 @@ export function AddressEditerV1(props: { data?: IAddressV1 }) {
 
       <div className="mb-4">
         <label htmlFor="wifeDatetime">Datetime</label>
-        <DatePickerCustom />
+        <DatePickerCustom
+          showTimeSelect
+          placeholderText="DD-MM-YYYY HH:mm"
+          value={formatDateString(
+            getValues("husbandDatetime"),
+            "DD-MM-YYYY HH:mma",
+          )}
+        />
       </div>
 
       <div className="mb-4">
@@ -67,6 +97,9 @@ export function AddressEditerV1(props: { data?: IAddressV1 }) {
           className=" bg-white"
           rows={3}
           {...register("wifeAddress")}
+          onChange={(e) =>
+            setValue("wifeAddress", e.target.value, { shouldValidate: true })
+          }
         ></TextAreaCustom>
       </div>
 
@@ -77,6 +110,11 @@ export function AddressEditerV1(props: { data?: IAddressV1 }) {
           type="text"
           className=" bg-white"
           {...register("wifeGoogleMapAddress")}
+          onChange={(e) =>
+            setValue("wifeGoogleMapAddress", e.target.value, {
+              shouldValidate: true,
+            })
+          }
         ></InputCustom>
       </div>
 
@@ -88,7 +126,19 @@ export function AddressEditerV1(props: { data?: IAddressV1 }) {
 
       <div className="mb-4">
         <label htmlFor="husbandDatetime"> Datetime</label>
-        <DatePickerCustom />
+        <DatePickerCustom
+          showTimeSelect
+          onChange={(value) =>
+            setValue("husbandDatetime", formatDate(value), {
+              shouldValidate: true,
+            })
+          }
+          placeholderText="DD-MM-YYYY HH:mm"
+          value={formatDateString(
+            getValues("husbandDatetime"),
+            "DD-MM-YYYY HH:mma",
+          )}
+        />
       </div>
 
       <div className="mb-4">
@@ -98,6 +148,9 @@ export function AddressEditerV1(props: { data?: IAddressV1 }) {
           className=" bg-white"
           rows={3}
           {...register("husbandAddress")}
+          onChange={(e) =>
+            setValue("husbandAddress", e.target.value, { shouldValidate: true })
+          }
         ></TextAreaCustom>
       </div>
 
@@ -108,6 +161,11 @@ export function AddressEditerV1(props: { data?: IAddressV1 }) {
           type="text"
           className=" bg-white"
           {...register("husbandGoogleMapAddress")}
+          onChange={(e) =>
+            setValue("husbandGoogleMapAddress", e.target.value, {
+              shouldValidate: true,
+            })
+          }
         ></InputCustom>
       </div>
     </div>

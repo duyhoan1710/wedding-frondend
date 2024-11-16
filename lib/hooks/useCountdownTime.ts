@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 export default function useCountdownTime(targetDate: string) {
-  const calculateTimeLeft = () => {
+  const calculateTimeLeft = (targetDate: string) => {
     const difference = new Date(targetDate).getTime() - new Date().getTime();
     let timeLeft = {};
 
@@ -26,15 +26,15 @@ export default function useCountdownTime(targetDate: string) {
     return timeLeft;
   };
 
-  const [timeLeft, setTimeLeft] = useState<any>(calculateTimeLeft());
+  const [timeLeft, setTimeLeft] = useState<any>(calculateTimeLeft(targetDate));
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setTimeLeft(calculateTimeLeft());
+      setTimeLeft(calculateTimeLeft(targetDate));
     }, 1000);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [targetDate]);
 
   return timeLeft;
 }

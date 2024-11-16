@@ -7,8 +7,16 @@ import { useForm } from "react-hook-form";
 import { InputCustom } from "@/components/common/Input";
 import { InputImageCustom } from "@/components/common/InputImage";
 import { IForeWordV1 } from ".";
+import { ITemplate } from "@/app/[locale]/(dashboard)/templates/[slug]/page";
+import { Dispatch, SetStateAction, useEffect } from "react";
+import { EComponentCode } from "@/lib/enum";
+import { cleanObj } from "@/lib/utils";
 
-export function ForewordEditerV1(props: { data: IForeWordV1 }) {
+export function ForewordEditerV1(props: {
+  code: EComponentCode;
+  data: IForeWordV1;
+  setData: Dispatch<SetStateAction<ITemplate[]>>;
+}) {
   const schema = yup.object().shape({
     wifeName: yup.string().required("Required field"),
     husbandName: yup.string().required("Required field"),
@@ -17,13 +25,29 @@ export function ForewordEditerV1(props: { data: IForeWordV1 }) {
   });
 
   const {
+    setValue,
     register,
     formState: { errors },
     getValues,
   } = useForm({
     mode: "onChange",
     resolver: yupResolver(schema),
+    defaultValues: props.data,
   });
+
+  useEffect(() => {
+    const tempData = getValues();
+
+    props.setData((pre: ITemplate[]) => {
+      return [...pre].map((template) => {
+        if (template.code === props.code) {
+          return { ...template, data: cleanObj(tempData) } as ITemplate;
+        }
+
+        return template;
+      });
+    });
+  }, [JSON.stringify(getValues())]);
 
   return (
     <div>
@@ -39,6 +63,10 @@ export function ForewordEditerV1(props: { data: IForeWordV1 }) {
           type="text"
           className=" bg-white"
           {...register("wifeName")}
+          onChange={(e) =>
+            setValue("wifeName", e.target.value, { shouldValidate: true })
+          }
+          defaultValue={getValues("wifeName")}
         ></InputCustom>
       </div>
 
@@ -54,6 +82,10 @@ export function ForewordEditerV1(props: { data: IForeWordV1 }) {
           type="text"
           className=" bg-white"
           {...register("husbandName")}
+          onChange={(e) =>
+            setValue("husbandName", e.target.value, { shouldValidate: true })
+          }
+          defaultValue={getValues("husbandName")}
         ></InputCustom>
       </div>
 

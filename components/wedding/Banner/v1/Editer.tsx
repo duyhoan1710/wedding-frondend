@@ -8,8 +8,16 @@ import { InputCustom } from "@/components/common/Input";
 import { IBannerV1 } from ".";
 import { InputImageCustom } from "@/components/common/InputImage";
 import { DatePickerCustom } from "@/components/common/Datepicker";
+import { ITemplate } from "@/app/[locale]/(dashboard)/templates/[slug]/page";
+import { Dispatch, SetStateAction, useEffect } from "react";
+import { cleanObj, formatDate, formatDateString } from "@/lib/utils";
+import { EComponentCode } from "@/lib/enum";
 
-export function BannerEditerV1(props: { data: IBannerV1 }) {
+export function BannerEditerV1(props: {
+  code: EComponentCode;
+  data: IBannerV1;
+  setData: Dispatch<SetStateAction<ITemplate[]>>;
+}) {
   const schema = yup.object().shape({
     wifeName: yup.string().required("Required field"),
     husbandName: yup.string().required("Required field"),
@@ -19,12 +27,28 @@ export function BannerEditerV1(props: { data: IBannerV1 }) {
 
   const {
     register,
+    setValue,
     formState: { errors },
     getValues,
   } = useForm({
     mode: "onChange",
     resolver: yupResolver(schema),
+    defaultValues: props.data,
   });
+
+  useEffect(() => {
+    const tempData = getValues();
+
+    props.setData((pre: ITemplate[]) => {
+      return [...pre].map((template) => {
+        if (template.code === props.code) {
+          return { ...template, data: cleanObj(tempData) } as ITemplate;
+        }
+
+        return template;
+      });
+    });
+  }, [JSON.stringify(getValues())]);
 
   return (
     <div>
@@ -40,6 +64,10 @@ export function BannerEditerV1(props: { data: IBannerV1 }) {
           type="text"
           className=" bg-white"
           {...register("wifeName")}
+          onChange={(e) =>
+            setValue("wifeName", e.target.value, { shouldValidate: true })
+          }
+          defaultValue={getValues("wifeName")}
         ></InputCustom>
       </div>
 
@@ -50,12 +78,23 @@ export function BannerEditerV1(props: { data: IBannerV1 }) {
           type="text"
           className=" bg-white"
           {...register("husbandName")}
+          onChange={(e) =>
+            setValue("husbandName", e.target.value, { shouldValidate: true })
+          }
+          defaultValue={getValues("husbandName")}
         ></InputCustom>
       </div>
 
       <div className="mb-4">
-        <label htmlFor="wifeName">Wedding date</label>
-        <DatePickerCustom />
+        <label htmlFor="wifeDate">Wedding date</label>
+        <DatePickerCustom
+          onChange={(value) =>
+            setValue("weddingDate", formatDate(value), {
+              shouldValidate: true,
+            })
+          }
+          value={formatDateString(props.data.weddingDate)}
+        />
       </div>
 
       <div className="mb-4">

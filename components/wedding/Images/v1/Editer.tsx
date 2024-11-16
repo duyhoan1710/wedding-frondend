@@ -5,9 +5,17 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 
 import { InputImageCustom } from "@/components/common/InputImage";
-import { IImages } from ".";
+import { IImagesV1 } from ".";
+import { ITemplate } from "@/app/[locale]/(dashboard)/templates/[slug]/page";
+import { Dispatch, SetStateAction, useEffect } from "react";
+import { EComponentCode } from "@/lib/enum";
+import { cleanObj } from "@/lib/utils";
 
-export function ImagesEditerV1(props: { data: IImages }) {
+export function ImagesEditerV1(props: {
+  code: EComponentCode;
+  data: IImagesV1;
+  setData: Dispatch<SetStateAction<ITemplate[]>>;
+}) {
   const schema = yup.object().shape({
     images: yup
       .array()
@@ -17,6 +25,7 @@ export function ImagesEditerV1(props: { data: IImages }) {
   });
 
   const {
+    setValue,
     register,
     formState: { errors },
     getValues,
@@ -25,10 +34,24 @@ export function ImagesEditerV1(props: { data: IImages }) {
     resolver: yupResolver(schema),
   });
 
+  useEffect(() => {
+    const tempData = getValues();
+
+    props.setData((pre: ITemplate[]) => {
+      return [...pre].map((template) => {
+        if (template.code === props.code) {
+          return { ...template, data: cleanObj(tempData) } as ITemplate;
+        }
+
+        return template;
+      });
+    });
+  }, [JSON.stringify(getValues())]);
+
   return (
     <div>
       <h3 className=" -mx-4 mb-2 border-b border-color-border px-2 pb-4 text-xl font-medium">
-        Banner <span className="text-sm text-gray-secondary">v1</span>
+        Images <span className="text-sm text-gray-secondary">v1</span>
       </h3>
 
       <div className="mb-4 -ml-2 text-sm">Property</div>

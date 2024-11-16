@@ -12,7 +12,7 @@ export function DatePickerCustom(props: DatePickerProps) {
       icon={<AiTwotoneCalendar className="mt-1" />}
       showIcon
       wrapperClassName="w-full"
-      placeholderText="DD/MM/YYYY"
+      placeholderText={props.placeholderText || "DD-MM-YYYY"}
       className="h-[40px] w-full rounded border border-color-border !pl-8"
     />
   );

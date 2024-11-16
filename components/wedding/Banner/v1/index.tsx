@@ -2,7 +2,7 @@
 
 import { useContext, useEffect, useRef } from "react";
 
-import Countdown from "../../../common/Countdown";
+import Countdown from "./Countdown";
 import FloatingElements from "@/components/common/FloatingAnimation";
 import { WidthContext } from "@/app/[locale]/(dashboard)/templates/[slug]/PreviewTemplateProvider";
 import classNames from "classnames";

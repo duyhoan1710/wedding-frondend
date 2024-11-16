@@ -8,10 +8,13 @@ import { AiOutlinePlusCircle } from "react-icons/ai";
 import { InputCustom } from "@/components/common/Input";
 import { InputImageCustom } from "@/components/common/InputImage";
 import { DatePickerCustom } from "@/components/common/Datepicker";
-import { ITImelineItemV1, ITimelineV1 } from ".";
-import { useState } from "react";
+import { ITimelineV1 } from ".";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { TextAreaCustom } from "@/components/common/Textarea";
 import { ButtonCustom } from "@/components/common/Button";
+import { ITemplate } from "@/app/[locale]/(dashboard)/templates/[slug]/page";
+import { EComponentCode } from "@/lib/enum";
+import { cleanObj, formatDate, formatDateString } from "@/lib/utils";
 
 const DEFAULT_TIMELINE = {
   title: "",
@@ -20,11 +23,11 @@ const DEFAULT_TIMELINE = {
   image: "",
 };
 
-export function TimelineEditerV1(props: { data: ITimelineV1 }) {
-  const [timelines, setTimelines] = useState<ITImelineItemV1[]>([
-    DEFAULT_TIMELINE,
-  ]);
-
+export function TimelineEditerV1(props: {
+  code: EComponentCode;
+  data: ITimelineV1;
+  setData: Dispatch<SetStateAction<ITemplate[]>>;
+}) {
   const schema = yup.object().shape({
     items: yup
       .array()
@@ -36,28 +39,67 @@ export function TimelineEditerV1(props: { data: ITimelineV1 }) {
           image: yup.string().required("Image is required"),
         }),
       )
-      .min(1, "At least one item is required"),
+      .min(1, "At least one item is required")
+      .required("Timelines is required"),
   });
 
   const {
-    register,
+    setValue,
     formState: { errors },
     getValues,
   } = useForm({
     mode: "onChange",
     resolver: yupResolver(schema),
+    defaultValues: { items: props.data.timelines },
   });
 
+  useEffect(() => {
+    const tempData = getValues();
+
+    props.setData((pre: ITemplate[]) => {
+      return [...pre].map((template) => {
+        if (template.code === props.code) {
+          return { ...template, data: cleanObj(tempData) } as ITemplate;
+        }
+
+        return template;
+      });
+    });
+  }, [JSON.stringify(getValues())]);
+
   const addItem = () => {
-    setTimelines((pre) => [...pre, DEFAULT_TIMELINE]);
+    const timelines = getValues().items;
+
+    setValue("items", [...timelines, DEFAULT_TIMELINE], {
+      shouldValidate: true,
+    });
   };
 
   const removeItem = (index: number) => {
-    const cloneTimelines = [...timelines];
+    const cloneTimelines = getValues().items;
 
     cloneTimelines.splice(index, 1);
 
-    setTimelines(cloneTimelines);
+    setValue("items", cloneTimelines, {
+      shouldValidate: true,
+    });
+  };
+
+  const setValueToItem = (index: number, key: string, value: any) => {
+    const cloneTimelines = getValues().items;
+
+    const timelineEdited = [...cloneTimelines].map((timeline, idx) => {
+      if (index === idx) {
+        return {
+          ...timeline,
+          [key]: value,
+        };
+      }
+
+      return timeline;
+    });
+
+    setValue("items", timelineEdited, { shouldValidate: true });
   };
 
   return (
@@ -68,14 +110,14 @@ export function TimelineEditerV1(props: { data: ITimelineV1 }) {
 
       <div className="mb-4 -ml-2 text-sm">Property</div>
 
-      {timelines.map((timeline, index) => (
+      {getValues("items").map((timeline, index) => (
         <div>
           <div className="flex justify-end">
             <ButtonCustom
               className="h-fit"
               variant="bordered"
-              color={timelines.length === 1 ? "default" : "danger"}
-              disabled={timelines.length === 1}
+              color={getValues().items.length === 1 ? "default" : "danger"}
+              disabled={getValues().items.length === 1}
               onClick={() => removeItem(index)}
             >
               Remove
@@ -88,6 +130,8 @@ export function TimelineEditerV1(props: { data: ITimelineV1 }) {
               id="title"
               type="text"
               className=" bg-white"
+              defaultValue={timeline.title}
+              onChange={(e) => setValueToItem(index, "title", e.target.value)}
             ></InputCustom>
           </div>
 
@@ -97,12 +141,20 @@ export function TimelineEditerV1(props: { data: ITimelineV1 }) {
               id="content"
               className=" bg-white"
               rows={2}
+              defaultValue={timeline.content}
+              onChange={(e) => setValueToItem(index, "content", e.target.value)}
             ></TextAreaCustom>
           </div>
 
           <div className="mb-4">
             <label htmlFor="date">Anniversary day</label>
-            <DatePickerCustom id="date" />
+            <DatePickerCustom
+              id="date"
+              onChange={(value) =>
+                setValueToItem(index, "date", formatDate(value))
+              }
+              value={formatDateString(timeline.date)}
+            />
           </div>
 
           <div className="mb-4">
@@ -110,7 +162,7 @@ export function TimelineEditerV1(props: { data: ITimelineV1 }) {
             <InputImageCustom />
           </div>
 
-          {index !== timelines.length - 1 && (
+          {index !== getValues().items.length - 1 && (
             <div className="-mx-2 mb-4 border-b border-gray-500" />
           )}
         </div>
