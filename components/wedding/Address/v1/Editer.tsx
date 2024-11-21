@@ -12,11 +12,11 @@ import { TextAreaCustom } from "@/components/common/Textarea";
 import { ITemplate } from "@/app/[locale]/(dashboard)/templates/[slug]/page";
 import { Dispatch, SetStateAction, useEffect } from "react";
 import { EComponentCode } from "@/lib/enum";
-import { cleanObj, formatDate, formatDateString } from "@/lib/utils";
+import { cleanObj, formatDate, formatDateString, getImage } from "@/lib/utils";
 
 export function AddressEditerV1(props: {
   code: EComponentCode;
-  data?: IAddressV1;
+  data: IAddressV1;
   setData: Dispatch<SetStateAction<ITemplate[]>>;
 }) {
   const schema = yup.object().shape({
@@ -38,6 +38,7 @@ export function AddressEditerV1(props: {
   } = useForm({
     mode: "onChange",
     resolver: yupResolver(schema),
+    defaultValues: props.data,
   });
 
   useEffect(() => {
@@ -65,7 +66,7 @@ export function AddressEditerV1(props: {
       <div className="mb-4">
         <label>Background left</label>
         <InputImageCustom
-          value={getValues("backgroundLeft")}
+          value={getImage(getValues("backgroundLeft"))}
           onUploadSuccess={(value) =>
             setValue("backgroundLeft", value as string, {
               shouldValidate: true,
@@ -77,7 +78,7 @@ export function AddressEditerV1(props: {
       <div className="mb-4">
         <label>Background right</label>
         <InputImageCustom
-          value={getValues("backgroundRight")}
+          value={getImage(getValues("backgroundRight"))}
           onUploadSuccess={(value) =>
             setValue("backgroundRight", value as string, {
               shouldValidate: true,

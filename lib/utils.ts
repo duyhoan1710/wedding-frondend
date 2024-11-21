@@ -2,6 +2,7 @@ import dayjs from "dayjs";
 import "dayjs/locale/vi";
 
 import ms from "ms";
+import { StaticImageData } from "next/image";
 
 dayjs.locale("vi");
 

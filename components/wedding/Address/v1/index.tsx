@@ -13,14 +13,14 @@ export interface IAddressV1 {
   backgroundRight: string;
   husbandDatetime: string;
   husbandAddress: string;
-  husbandGoogleMapAddress?: string;
+  husbandGoogleMapAddress: string;
   wifeDatetime: string;
   wifeAddress: string;
-  wifeGoogleMapAddress?: string;
+  wifeGoogleMapAddress: string;
 }
 
 export const DEFAULT_DATA_ADDRESS_V1 = {
-  backgroundLeft: "",
+  backgroundLeft: "bg-time-event-left.png",
   backgroundRight: "",
   husbandDatetime: "",
   husbandAddress: "",
@@ -53,21 +53,21 @@ export default function AddressV1(props: IAddressV1) {
             src={getImage(props.backgroundLeft)}
             alt=""
             fill
-            style={{ objectFit: "cover" }}
+            style={{ objectFit: "fill" }}
           />
         </div>
 
         <div
           className={classNames(
             "relative hidden h-full w-full",
-            width >= EWindowSize.LG && "block lg:w-[45%]",
+            width >= EWindowSize.LG && "lg:block lg:w-[45%]",
           )}
         >
           <Image
             src={getImage(props.backgroundRight)}
             alt=""
             fill
-            style={{ objectFit: "cover" }}
+            style={{ objectFit: "fill" }}
           />
         </div>
       </div>

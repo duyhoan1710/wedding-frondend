@@ -16,7 +16,7 @@ export interface IBankAccountV1 {
 }
 
 export const DEFAULT_DATA_BANK_ACCOUNT_V1 = {
-  background: "",
+  background: "img_bg.jpeg",
   husbandBankAccountName: "",
   husbandBankAccountNumber: "",
   husbandBankAccountImage: "",
