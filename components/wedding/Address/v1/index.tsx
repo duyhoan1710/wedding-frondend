@@ -2,9 +2,10 @@
 
 import { WidthContext } from "@/app/[locale]/(dashboard)/templates/[slug]/PreviewTemplateProvider";
 import { EWindowSize } from "@/lib/enum";
-import { getImage } from "@/lib/utils";
+import { formatDateString, getImage } from "@/lib/utils";
 import classNames from "classnames";
 import Image from "next/image";
+import Link from "next/link";
 import { useContext } from "react";
 
 export interface IAddressV1 {
@@ -58,8 +59,8 @@ export default function AddressV1(props: IAddressV1) {
 
         <div
           className={classNames(
-            "relative h-full w-full",
-            width >= EWindowSize.LG && "lg:w-[45%]",
+            "relative hidden h-full w-full",
+            width >= EWindowSize.LG && "block lg:w-[45%]",
           )}
         >
           <Image
@@ -98,8 +99,13 @@ export default function AddressV1(props: IAddressV1) {
                   THỜI GIAN
                 </div>
                 <div className="text-sm font-semibold leading-relaxed text-dark-red">
-                  <p>10:30</p>
-                  <p>THỨ BẢY 18 THÁNG 2 NĂM 2023</p>
+                  <p>{formatDateString(props.wifeDatetime, "HH:mma")}</p>
+                  <p className=" capitalize">
+                    {formatDateString(
+                      props.wifeDatetime,
+                      "dddd, DD [Tháng] MM [Năm] YYYY",
+                    )}
+                  </p>
                 </div>
               </div>
 
@@ -109,10 +115,17 @@ export default function AddressV1(props: IAddressV1) {
                 </div>
                 <div>
                   <div className="text-sm font-semibold leading-relaxed text-dark-red">
-                    <p>NHÀ HÀNG ASEAN</p>
-                    <p>SỐ 9 TRUNG ĐÔ, KIM TÂN, THÀNH PHỐ LÀO CAI</p>
+                    <p className=" whitespace-pre">{props.wifeAddress}</p>
                   </div>
-                  <p>Nhấn vào đây để tìm kiếm</p>
+                  {props.wifeGoogleMapAddress && (
+                    <Link
+                      className=" underline"
+                      href={props.wifeGoogleMapAddress}
+                      target="_blank"
+                    >
+                      Nhấn vào đây để tìm kiếm
+                    </Link>
+                  )}
                 </div>
               </div>
             </div>
@@ -129,8 +142,13 @@ export default function AddressV1(props: IAddressV1) {
                   THỜI GIAN
                 </div>
                 <div className="text-sm font-semibold leading-relaxed text-dark-red">
-                  <p>10:30</p>
-                  <p>THỨ BẢY 18 THÁNG 2 NĂM 2023</p>
+                  <p>{formatDateString(props.husbandDatetime, "HH:mma")}</p>
+                  <p className=" capitalize">
+                    {formatDateString(
+                      props.husbandDatetime,
+                      "dddd, DD [Tháng] MM [Năm] YYYY",
+                    )}
+                  </p>
                 </div>
               </div>
 
@@ -140,10 +158,17 @@ export default function AddressV1(props: IAddressV1) {
                 </div>
                 <div>
                   <div className="text-sm font-semibold leading-relaxed text-dark-red">
-                    <p>ĐẠI HOÀNG SƠN OPERA WEDDING PLACE</p>
-                    <p>45 HÙNG VƯƠNG, PHƯỜNG NGÔ QUYỀN, THÀNH PHỐ BẮC GIANG</p>
+                    <p className=" whitespace-pre">{props.husbandAddress}</p>
                   </div>
-                  <p>Nhấn vào đây để tìm kiếm</p>
+                  {props.husbandGoogleMapAddress && (
+                    <Link
+                      className=" underline"
+                      href={props.husbandGoogleMapAddress}
+                      target="_blank"
+                    >
+                      Nhấn vào đây để tìm kiếm
+                    </Link>
+                  )}
                 </div>
               </div>
             </div>

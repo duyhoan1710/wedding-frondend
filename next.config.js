@@ -7,7 +7,11 @@ const nextConfig = {
     serverComponentsExternalPackages: ["mongoose"],
   },
   images: {
-    domains: ["vercel.com", "localhost"],
+    domains: [
+      "vercel.com",
+      "localhost",
+      "wedding-backend.s3.ap-southeast-2.amazonaws.com",
+    ],
   },
   compiler: {
     styledComponents: {

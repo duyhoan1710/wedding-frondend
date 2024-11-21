@@ -10,7 +10,7 @@ import { IForeWordV1 } from ".";
 import { ITemplate } from "@/app/[locale]/(dashboard)/templates/[slug]/page";
 import { Dispatch, SetStateAction, useEffect } from "react";
 import { EComponentCode } from "@/lib/enum";
-import { cleanObj } from "@/lib/utils";
+import { cleanObj, getImage } from "@/lib/utils";
 
 export function ForewordEditerV1(props: {
   code: EComponentCode;
@@ -72,7 +72,12 @@ export function ForewordEditerV1(props: {
 
       <div className="mb-4">
         <label htmlFor="wifeImage">Wife image</label>
-        <InputImageCustom />
+        <InputImageCustom
+          value={getImage(getValues("wifeImage"))}
+          onUploadSuccess={(value) =>
+            setValue("wifeImage", value as string, { shouldValidate: true })
+          }
+        />
       </div>
 
       <div className="mb-4">
@@ -91,7 +96,12 @@ export function ForewordEditerV1(props: {
 
       <div className="mb-4">
         <label htmlFor="husbandImage">Husband image</label>
-        <InputImageCustom />
+        <InputImageCustom
+          value={getImage(getValues("husbandImage"))}
+          onUploadSuccess={(value) =>
+            setValue("husbandImage", value as string, { shouldValidate: true })
+          }
+        />
       </div>
     </div>
   );

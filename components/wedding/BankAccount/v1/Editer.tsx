@@ -8,8 +8,9 @@ import { InputCustom } from "@/components/common/Input";
 import { InputImageCustom } from "@/components/common/InputImage";
 import { IBankAccountV1 } from ".";
 import { ITemplate } from "@/app/[locale]/(dashboard)/templates/[slug]/page";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useEffect } from "react";
 import { EComponentCode } from "@/lib/enum";
+import { cleanObj, getImage } from "@/lib/utils";
 
 export function BankAccountEditerV1(props: {
   code: EComponentCode;
@@ -37,6 +38,20 @@ export function BankAccountEditerV1(props: {
     defaultValues: props.data,
   });
 
+  useEffect(() => {
+    const tempData = getValues();
+
+    props.setData((pre: ITemplate[]) => {
+      return [...pre].map((template) => {
+        if (template.code === props.code) {
+          return { ...template, data: cleanObj(tempData) } as ITemplate;
+        }
+
+        return template;
+      });
+    });
+  }, [JSON.stringify(getValues())]);
+
   return (
     <div>
       <h3 className=" -mx-4 mb-2 border-b border-color-border px-2 pb-4 text-xl font-medium">
@@ -47,7 +62,12 @@ export function BankAccountEditerV1(props: {
 
       <div className="mb-4">
         <label>Background</label>
-        <InputImageCustom />
+        <InputImageCustom
+          value={getImage(getValues("background"))}
+          onUploadSuccess={(value) =>
+            setValue("background", value as string, { shouldValidate: true })
+          }
+        />
       </div>
 
       <div className="flex items-center text-center font-medium">
@@ -90,7 +110,14 @@ export function BankAccountEditerV1(props: {
 
       <div className="mb-4">
         <label htmlFor="wifeBankAccountImage">QR image</label>
-        <InputImageCustom />
+        <InputImageCustom
+          value={getImage(getValues("wifeBankAccountImage"))}
+          onUploadSuccess={(value) =>
+            setValue("wifeBankAccountImage", value as string, {
+              shouldValidate: true,
+            })
+          }
+        />
       </div>
 
       <div className="flex items-center text-center font-medium">
@@ -133,7 +160,14 @@ export function BankAccountEditerV1(props: {
 
       <div className="mb-4">
         <label htmlFor="husbandBankAccountImage">QR image</label>
-        <InputImageCustom />
+        <InputImageCustom
+          value={getImage(getValues("husbandBankAccountImage"))}
+          onUploadSuccess={(value) =>
+            setValue("husbandBankAccountImage", value as string, {
+              shouldValidate: true,
+            })
+          }
+        />
       </div>
     </div>
   );

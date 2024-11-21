@@ -24,8 +24,12 @@ function request(method: "GET" | "POST" | "PUT" | "DELETE") {
     }
 
     if (body) {
-      requestOptions.headers["Content-Type"] = "application/json";
-      requestOptions.body = JSON.stringify(body);
+      if (body instanceof FormData) {
+        requestOptions.body = body;
+      } else {
+        requestOptions.headers["Content-Type"] = "application/json";
+        requestOptions.body = JSON.stringify(body);
+      }
     }
 
     return fetch(`${serverEnpoint}/${url}`, requestOptions).then(

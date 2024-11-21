@@ -18,14 +18,16 @@ export default function Countdown({ targetDate }: { targetDate: string }) {
       <div
         className={classNames(
           "m-[2px] flex h-[65px] w-[68px] animate-s-pulse flex-col justify-evenly rounded-full bg-pink-8 p-3 ",
-          width >= EWindowSize.MD && "md:h-[100px] md:w-[100px]",
+          width >= EWindowSize.MD && "md:h-[80px] md:w-[80px]",
+          width >= EWindowSize.XL && "xl:h-[100px] xl:w-[100px]",
         )}
       >
         <div
           suppressHydrationWarning
           className={classNames(
             "text-xl ",
-            width >= EWindowSize.MD && "md:text-3xl",
+            width >= EWindowSize.MD && "md:text-2xl",
+            width >= EWindowSize.XL && "xl:text-3xl",
           )}
         >
           {timeLeft.days}
@@ -35,14 +37,16 @@ export default function Countdown({ targetDate }: { targetDate: string }) {
       <div
         className={classNames(
           "m-[2px] flex h-[65px] w-[68px] animate-s-pulse flex-col justify-evenly rounded-full bg-pink-8 p-3 ",
-          width >= EWindowSize.MD && "md:h-[100px] md:w-[100px]",
+          width >= EWindowSize.MD && "md:h-[80px] md:w-[80px]",
+          width >= EWindowSize.XL && "xl:h-[100px] xl:w-[100px]",
         )}
       >
         <div
           suppressHydrationWarning
           className={classNames(
             "text-xl ",
-            width >= EWindowSize.MD && "md:text-3xl",
+            width >= EWindowSize.MD && "md:text-2xl",
+            width >= EWindowSize.XL && "xl:text-3xl",
           )}
         >
           {formatTime(timeLeft.hours)}
@@ -52,14 +56,16 @@ export default function Countdown({ targetDate }: { targetDate: string }) {
       <div
         className={classNames(
           "m-[2px] flex h-[65px] w-[68px] animate-s-pulse flex-col justify-evenly rounded-full bg-pink-8 p-3 ",
-          width >= EWindowSize.MD && "md:h-[100px] md:w-[100px]",
+          width >= EWindowSize.MD && "md:h-[80px] md:w-[80px]",
+          width >= EWindowSize.XL && "xl:h-[100px] xl:w-[100px]",
         )}
       >
         <div
           suppressHydrationWarning
           className={classNames(
             "text-xl ",
-            width >= EWindowSize.MD && "md:text-3xl",
+            width >= EWindowSize.MD && "md:text-2xl",
+            width >= EWindowSize.XL && "xl:text-3xl",
           )}
         >
           {formatTime(timeLeft.minutes)}
@@ -69,14 +75,16 @@ export default function Countdown({ targetDate }: { targetDate: string }) {
       <div
         className={classNames(
           "m-[2px] flex h-[65px] w-[68px] animate-s-pulse flex-col justify-evenly rounded-full bg-pink-8 p-3 ",
-          width >= EWindowSize.MD && "md:h-[100px] md:w-[100px]",
+          width >= EWindowSize.MD && "md:h-[80px] md:w-[80px]",
+          width >= EWindowSize.XL && "xl:h-[100px] xl:w-[100px]",
         )}
       >
         <div
           suppressHydrationWarning
           className={classNames(
             "text-xl ",
-            width >= EWindowSize.MD && "md:text-3xl",
+            width >= EWindowSize.MD && "md:text-2xl",
+            width >= EWindowSize.XL && "xl:text-3xl",
           )}
         >
           {formatTime(timeLeft.seconds)}

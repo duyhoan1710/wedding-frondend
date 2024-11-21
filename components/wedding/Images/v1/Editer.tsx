@@ -9,7 +9,7 @@ import { IImagesV1 } from ".";
 import { ITemplate } from "@/app/[locale]/(dashboard)/templates/[slug]/page";
 import { Dispatch, SetStateAction, useEffect } from "react";
 import { EComponentCode } from "@/lib/enum";
-import { cleanObj } from "@/lib/utils";
+import { cleanObj, getImage } from "@/lib/utils";
 
 export function ImagesEditerV1(props: {
   code: EComponentCode;
@@ -19,7 +19,7 @@ export function ImagesEditerV1(props: {
   const schema = yup.object().shape({
     images: yup
       .array()
-      .of(yup.string())
+      .of(yup.string().required("Required field"))
       .length(9, "The number of images must be equal 9")
       .required("Required field"),
   });
@@ -32,6 +32,7 @@ export function ImagesEditerV1(props: {
   } = useForm({
     mode: "onChange",
     resolver: yupResolver(schema),
+    defaultValues: props.data,
   });
 
   useEffect(() => {
@@ -58,7 +59,13 @@ export function ImagesEditerV1(props: {
 
       <div className="mb-4">
         <label htmlFor="wifeName">List images</label>
-        <InputImageCustom mutiple={true} />
+        <InputImageCustom
+          mutiple={true}
+          value={getValues("images").map((image) => getImage(image))}
+          onUploadSuccess={(value) =>
+            setValue("images", value as string[], { shouldValidate: true })
+          }
+        />
       </div>
     </div>
   );

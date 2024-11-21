@@ -5,7 +5,7 @@ import { ReactNode, createContext, useEffect, useRef, useState } from "react";
 export const WidthContext = createContext<{
   width: number;
 }>({
-  width: window?.screen?.width,
+  width: typeof window !== undefined ? window?.screen?.width : 0,
 });
 
 export function PreviewTemplateProvider({ children }: { children: ReactNode }) {

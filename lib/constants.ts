@@ -52,3 +52,28 @@ export const MENU_SIDE_BAR: {
     role: [ERole.ADMIN, ERole.USER],
   },
 ];
+
+const days = [
+  "CHỦ NHẬT",
+  "THỨ HAI",
+  "THỨ BA",
+  "THỨ TƯ",
+  "THỨ NĂM",
+  "THỨ SÁU",
+  "THỨ BẢY",
+];
+
+const months = [
+  "THÁNG 1",
+  "THÁNG 2",
+  "THÁNG 3",
+  "THÁNG 4",
+  "THÁNG 5",
+  "THÁNG 6",
+  "THÁNG 7",
+  "THÁNG 8",
+  "THÁNG 9",
+  "THÁNG 10",
+  "THÁNG 11",
+  "THÁNG 12",
+];

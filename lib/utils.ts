@@ -1,5 +1,9 @@
 import dayjs from "dayjs";
+import "dayjs/locale/vi";
+
 import ms from "ms";
+
+dayjs.locale("vi");
 
 export const timeAgo = (timestamp: Date, timeOnly?: boolean): string => {
   if (!timestamp) return "never";
@@ -21,7 +25,13 @@ export const truncate = (str: string, length: number) => {
 export const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 export const getImage = (url: string) => {
+  if (!url) return "";
+
   return process.env.NEXT_PUBLIC_SERVER_IMAGE + "/" + url;
+};
+
+export const trimDomain = (url: string) => {
+  return url.split(`${process.env.NEXT_PUBLIC_SERVER_IMAGE}/`)[1];
 };
 
 export function cleanObj(obj: { [x: string]: any }) {

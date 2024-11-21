@@ -10,11 +10,12 @@ export interface IImagesV1 {
 }
 
 export const DEFAULT_DATA_IMAGES_V1 = {
-  images: [""],
+  images: [],
 };
 
 export default function ImagesV1(props: IImagesV1) {
   const { width } = useContext(WidthContext);
+
   return (
     <div className="w-full bg-gray-4 pt-32 pb-24">
       <div className="container mx-auto">
@@ -22,7 +23,8 @@ export default function ImagesV1(props: IImagesV1) {
           <p className="mb-4 text-sm font-semibold leading-loose text-gray">
             OUR MEMORIES
           </p>
-          <h2 className={classNames(
+          <h2
+            className={classNames(
               "mb-4 font-sacra text-5xl font-bold text-pink",
               width >= EWindowSize.MD && "md:text-6xl",
             )}
@@ -31,7 +33,8 @@ export default function ImagesV1(props: IImagesV1) {
           </h2>
         </div>
 
-        <div className={classNames(
+        <div
+          className={classNames(
             "mx-auto flex w-full max-w-[1140px] flex-wrap px-5",
             width >= EWindowSize.XL && "xl:w-3/4",
           )}

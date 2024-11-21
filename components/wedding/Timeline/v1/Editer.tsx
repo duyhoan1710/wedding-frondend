@@ -14,7 +14,7 @@ import { TextAreaCustom } from "@/components/common/Textarea";
 import { ButtonCustom } from "@/components/common/Button";
 import { ITemplate } from "@/app/[locale]/(dashboard)/templates/[slug]/page";
 import { EComponentCode } from "@/lib/enum";
-import { cleanObj, formatDate, formatDateString } from "@/lib/utils";
+import { cleanObj, formatDate, formatDateString, getImage } from "@/lib/utils";
 
 const DEFAULT_TIMELINE = {
   title: "",
@@ -29,7 +29,7 @@ export function TimelineEditerV1(props: {
   setData: Dispatch<SetStateAction<ITemplate[]>>;
 }) {
   const schema = yup.object().shape({
-    items: yup
+    timelines: yup
       .array()
       .of(
         yup.object().shape({
@@ -50,7 +50,7 @@ export function TimelineEditerV1(props: {
   } = useForm({
     mode: "onChange",
     resolver: yupResolver(schema),
-    defaultValues: { items: props.data.timelines },
+    defaultValues: { timelines: props.data.timelines },
   });
 
   useEffect(() => {
@@ -68,25 +68,25 @@ export function TimelineEditerV1(props: {
   }, [JSON.stringify(getValues())]);
 
   const addItem = () => {
-    const timelines = getValues().items;
+    const timelines = getValues().timelines;
 
-    setValue("items", [...timelines, DEFAULT_TIMELINE], {
+    setValue("timelines", [...timelines, DEFAULT_TIMELINE], {
       shouldValidate: true,
     });
   };
 
   const removeItem = (index: number) => {
-    const cloneTimelines = getValues().items;
+    const cloneTimelines = getValues().timelines;
 
     cloneTimelines.splice(index, 1);
 
-    setValue("items", cloneTimelines, {
+    setValue("timelines", cloneTimelines, {
       shouldValidate: true,
     });
   };
 
   const setValueToItem = (index: number, key: string, value: any) => {
-    const cloneTimelines = getValues().items;
+    const cloneTimelines = getValues().timelines;
 
     const timelineEdited = [...cloneTimelines].map((timeline, idx) => {
       if (index === idx) {
@@ -99,7 +99,7 @@ export function TimelineEditerV1(props: {
       return timeline;
     });
 
-    setValue("items", timelineEdited, { shouldValidate: true });
+    setValue("timelines", timelineEdited, { shouldValidate: true });
   };
 
   return (
@@ -110,14 +110,14 @@ export function TimelineEditerV1(props: {
 
       <div className="mb-4 -ml-2 text-sm">Property</div>
 
-      {getValues("items").map((timeline, index) => (
+      {getValues("timelines").map((timeline, index) => (
         <div>
           <div className="flex justify-end">
             <ButtonCustom
               className="h-fit"
               variant="bordered"
-              color={getValues().items.length === 1 ? "default" : "danger"}
-              disabled={getValues().items.length === 1}
+              color={getValues().timelines.length === 1 ? "default" : "danger"}
+              disabled={getValues().timelines.length === 1}
               onClick={() => removeItem(index)}
             >
               Remove
@@ -136,17 +136,6 @@ export function TimelineEditerV1(props: {
           </div>
 
           <div className="mb-4">
-            <label htmlFor="content">Content</label>
-            <TextAreaCustom
-              id="content"
-              className=" bg-white"
-              rows={2}
-              defaultValue={timeline.content}
-              onChange={(e) => setValueToItem(index, "content", e.target.value)}
-            ></TextAreaCustom>
-          </div>
-
-          <div className="mb-4">
             <label htmlFor="date">Anniversary day</label>
             <DatePickerCustom
               id="date"
@@ -158,11 +147,25 @@ export function TimelineEditerV1(props: {
           </div>
 
           <div className="mb-4">
-            <label htmlFor="wifeName">Image</label>
-            <InputImageCustom />
+            <label htmlFor="content">Content</label>
+            <TextAreaCustom
+              id="content"
+              className=" bg-white"
+              rows={2}
+              defaultValue={timeline.content}
+              onChange={(e) => setValueToItem(index, "content", e.target.value)}
+            ></TextAreaCustom>
           </div>
 
-          {index !== getValues().items.length - 1 && (
+          <div className="mb-4">
+            <label htmlFor="image">Image</label>
+            <InputImageCustom
+              value={getImage(timeline.image)}
+              onUploadSuccess={(value) => setValueToItem(index, "image", value)}
+            />
+          </div>
+
+          {index !== getValues().timelines.length - 1 && (
             <div className="-mx-2 mb-4 border-b border-gray-500" />
           )}
         </div>

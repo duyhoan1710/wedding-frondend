@@ -244,6 +244,7 @@ export default function TemplateDetail() {
                   <PreviewTemplate
                     templates={templates}
                     setNodeRef={setNodeRef}
+                    selectedComponentId={selectedComponentId}
                   />
                 </PreviewTemplateProvider>
               </div>

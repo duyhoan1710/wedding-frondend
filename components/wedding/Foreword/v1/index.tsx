@@ -66,7 +66,7 @@ export default function ForewordV1(props: IForeWordV1) {
           className={classNames(
             "animate-box",
             width >= EWindowSize.MD && "md:flex ",
-            width >= EWindowSize.LG && "lg:w-1/2"
+            width >= EWindowSize.LG && "lg:w-1/2",
           )}
         >
           <div
@@ -90,19 +90,23 @@ export default function ForewordV1(props: IForeWordV1) {
             height={120}
             width={120}
             className={classNames(
-              "mx-auto rounded-full",
+              "mx-auto h-[120px] w-[120px] rounded-full border border-color-border object-cover",
               width >= EWindowSize.MD && "md:mx-0 md:h-[150px] md:w-[150px]",
             )}
           />
         </div>
 
-        <i className={classNames(
-            "animate-box heart absolute top-[calc(50%-10px)] left-[calc(50%-24px)] z-10 h-12 w-12 animate-s-pulse rounded-full bg-white p-3",
-            width >= EWindowSize.MD && "md:hidden",
-            width >= EWindowSize.LG && "lg:left-[calc(50%-30px)] lg:top-[calc(50%-30px)] lg:block lg:h-16 lg:w-16 lg:p-5",
-          )} />
+        <i
+          className={classNames(
+            "animate-box heart absolute top-[50%] left-[calc(50%-24px)] z-10 h-12 w-12 animate-s-pulse rounded-full bg-white p-3",
+            width >= EWindowSize.MD && "md:top-[calc(50%-10px)] md:hidden",
+            width >= EWindowSize.LG &&
+              "lg:left-[calc(50%-30px)] lg:top-[calc(50%-30px)] lg:block lg:h-16 lg:w-16 lg:p-5",
+          )}
+        />
 
-        <div className={classNames(
+        <div
+          className={classNames(
             "animate-box",
             width >= EWindowSize.MD && "md:flex",
             width >= EWindowSize.LG && "lg:w-1/2",
@@ -114,7 +118,7 @@ export default function ForewordV1(props: IForeWordV1) {
             height={120}
             width={120}
             className={classNames(
-              "mx-auto rounded-full",
+              "mx-auto h-[120px] w-[120px] rounded-full border border-color-border object-cover",
               width >= EWindowSize.MD && "md:mx-0 md:h-[150px] md:w-[150px]",
             )}
           />

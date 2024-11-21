@@ -64,12 +64,26 @@ export function AddressEditerV1(props: {
 
       <div className="mb-4">
         <label>Background left</label>
-        <InputImageCustom />
+        <InputImageCustom
+          value={getValues("backgroundLeft")}
+          onUploadSuccess={(value) =>
+            setValue("backgroundLeft", value as string, {
+              shouldValidate: true,
+            })
+          }
+        />
       </div>
 
       <div className="mb-4">
         <label>Background right</label>
-        <InputImageCustom />
+        <InputImageCustom
+          value={getValues("backgroundRight")}
+          onUploadSuccess={(value) =>
+            setValue("backgroundRight", value as string, {
+              shouldValidate: true,
+            })
+          }
+        />
       </div>
 
       <div className="flex items-center text-center font-medium">
@@ -83,8 +97,13 @@ export function AddressEditerV1(props: {
         <DatePickerCustom
           showTimeSelect
           placeholderText="DD-MM-YYYY HH:mm"
+          onChange={(value) =>
+            setValue("wifeDatetime", formatDate(value), {
+              shouldValidate: true,
+            })
+          }
           value={formatDateString(
-            getValues("husbandDatetime"),
+            getValues("wifeDatetime"),
             "DD-MM-YYYY HH:mma",
           )}
         />

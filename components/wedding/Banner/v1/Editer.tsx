@@ -10,7 +10,7 @@ import { InputImageCustom } from "@/components/common/InputImage";
 import { DatePickerCustom } from "@/components/common/Datepicker";
 import { ITemplate } from "@/app/[locale]/(dashboard)/templates/[slug]/page";
 import { Dispatch, SetStateAction, useEffect } from "react";
-import { cleanObj, formatDate, formatDateString } from "@/lib/utils";
+import { cleanObj, formatDate, formatDateString, getImage } from "@/lib/utils";
 import { EComponentCode } from "@/lib/enum";
 
 export function BannerEditerV1(props: {
@@ -99,7 +99,12 @@ export function BannerEditerV1(props: {
 
       <div className="mb-4">
         <label htmlFor="wifeName">Background</label>
-        <InputImageCustom />
+        <InputImageCustom
+          value={getImage(getValues("background"))}
+          onUploadSuccess={(value) => {
+            setValue("background", value as string, { shouldValidate: true });
+          }}
+        />
       </div>
     </div>
   );

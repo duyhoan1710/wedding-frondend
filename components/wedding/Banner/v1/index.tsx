@@ -7,6 +7,7 @@ import FloatingElements from "@/components/common/FloatingAnimation";
 import { WidthContext } from "@/app/[locale]/(dashboard)/templates/[slug]/PreviewTemplateProvider";
 import classNames from "classnames";
 import { EWindowSize } from "@/lib/enum";
+import { getImage } from "@/lib/utils";
 
 export interface IBannerV1 {
   husbandName: string;
@@ -47,7 +48,7 @@ export default function BannerV1(props: IBannerV1) {
         width >= EWindowSize.XL && "xl:h-screen",
       )}
       style={{
-        backgroundImage: `url('${props.background}')`,
+        backgroundImage: `url('${getImage(props.background)}')`,
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
       }}
@@ -75,8 +76,8 @@ export default function BannerV1(props: IBannerV1) {
           <h1
             className={classNames(
               "font-sacra text-4xl leading-tight",
-              width >= EWindowSize.MD && "md:text-6xl md:leading-normal",
-              width >= EWindowSize.LG && "lg:text-8xl",
+              width >= EWindowSize.MD && "md:text-6xl ",
+              width >= EWindowSize.XL && "xl:text-8xl",
             )}
           >
             {props.wifeName}
@@ -84,8 +85,8 @@ export default function BannerV1(props: IBannerV1) {
           <h1
             className={classNames(
               "font-sacra text-2xl leading-tight",
-              width >= EWindowSize.MD && "md:text-6xl md:leading-normal",
-              width >= EWindowSize.LG && "lg:text-8xl",
+              width >= EWindowSize.MD && "md:text-6xl ",
+              width >= EWindowSize.XL && "xl:text-8xl",
             )}
           >
             &
@@ -93,8 +94,8 @@ export default function BannerV1(props: IBannerV1) {
           <h1
             className={classNames(
               "font-sacra text-4xl leading-tight ",
-              width >= EWindowSize.MD && "md:text-6xl md:leading-normal",
-              width >= EWindowSize.LG && "lg:text-8xl",
+              width >= EWindowSize.MD && "md:text-6xl ",
+              width >= EWindowSize.XL && "xl:text-8xl",
             )}
           >
             {props.husbandName}

@@ -11,9 +11,11 @@ import FadeInSection from "@/components/common/FadeInSection";
 export function PreviewTemplate({
   templates,
   setNodeRef,
+  selectedComponentId,
 }: {
   templates: ITemplate[];
   setNodeRef: (element: HTMLElement | null) => void;
+  selectedComponentId?: string;
 }) {
   return (
     <SortableContext
@@ -39,7 +41,13 @@ export function PreviewTemplate({
                 )!.data as any;
 
                 return (
-                  <div className="m-2 h-fit rounded border border-gray-500">
+                  <div
+                    className={classNames(
+                      "m-2 h-fit rounded border border-gray-500",
+                      selectedComponentId === id &&
+                        "!border-2 !border-green-500",
+                    )}
+                  >
                     <Component {...props} />
                   </div>
                 );
