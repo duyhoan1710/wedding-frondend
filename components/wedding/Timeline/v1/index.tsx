@@ -66,7 +66,7 @@ export default function TimelineV1(props: ITimelineV1) {
           <div
             key={index}
             className={classNames(
-              "animate-box timeline-wrap flex items-start justify-between",
+              "animate-box timeline-wrap mb-7 flex items-start justify-between",
               width >= EWindowSize.MD &&
                 "md:mb-7 md:items-start md:justify-center ",
               width >= EWindowSize.MD &&
@@ -111,7 +111,7 @@ export default function TimelineV1(props: ITimelineV1) {
               {index !== props.timelines.length - 1 && (
                 <div
                   className={classNames(
-                    " mx-auto h-[80px] w-[1px] bg-color-border",
+                    " mx-auto hidden h-[80px] w-[1px] bg-color-border",
                     width >= EWindowSize.MD && "md:hidden",
                     width >= EWindowSize.LG && "lg:block",
                   )}

@@ -2,7 +2,6 @@
 import { ImageResponse } from "next/server";
 
 export const runtime = "edge";
-export const alt = "Precedent - Building blocks for your Next.js project";
 export const contentType = "image/png";
 
 export default async function OG() {
@@ -38,7 +37,7 @@ export default async function OG() {
             letterSpacing: "-0.02em",
           }}
         >
-          Precedent
+          Chuc mung hanh phuc tram nam
         </h1>
       </div>
     ),

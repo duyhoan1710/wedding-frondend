@@ -13,7 +13,7 @@ import {
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { arrayMove, sortableKeyboardCoordinates } from "@dnd-kit/sortable";
 
 import { EComponentCode } from "@/lib/enum";
@@ -26,8 +26,13 @@ import { IBankAccountV1 } from "@/components/wedding/BankAccount/v1";
 import { IFooterV1 } from "@/components/wedding/Footer/v1";
 import { PreviewTemplate } from "./PreviewTemplate";
 import { PreviewTemplateProvider } from "./PreviewTemplateProvider";
-import { useParams } from "next/navigation";
+import { useParams, useSearchParams } from "next/navigation";
 import classNames from "classnames";
+import { useMutation } from "@tanstack/react-query";
+import * as templateFetcher from "@/lib/fetchers/templates";
+import { toast } from "react-toastify";
+import { LoadingCircle } from "@/components/icons";
+import { useTemplate } from "@/lib/hooks/queries/useTemplates";
 
 export type ITemplate =
   | {
@@ -68,11 +73,30 @@ export type ITemplate =
 
 export default function TemplateDetail() {
   const params = useParams();
+  const searchParams = useSearchParams();
+
+  const { data: templateDetail } = useTemplate(params.slug);
 
   const [selectedComponentId, setSelectedComponentId] =
     useState<EComponentCode>();
 
   const [templates, setTemplates] = useState<ITemplate[]>([]);
+
+  useEffect(() => {
+    if (templateDetail) {
+      let contentTemp = [...templateDetail.content];
+
+      setTemplates(
+        templateDetail.content.map(
+          (v: { code: EComponentCode; dataChange: any }) => ({
+            id: v.code,
+            code: v.code,
+            data: v.dataChange,
+          }),
+        ),
+      );
+    }
+  }, [templateDetail]);
 
   const [isPC, setIsPC] = useState(true);
 
@@ -105,11 +129,6 @@ export default function TemplateDetail() {
     ) {
       return;
     }
-
-    console.log(
-      activeData?.current?.sortable?.containerId,
-      overData?.current?.sortable?.containerId,
-    );
 
     setTemplates((pre: ITemplate[]) => {
       const overItems = [...pre];
@@ -191,14 +210,41 @@ export default function TemplateDetail() {
     return findComponentByCode(selectedComponentId)?.EditerComponent;
   }, [selectedComponentId]);
 
+  const { mutate: handleSubmit, isPending } = useMutation({
+    mutationFn: async () => {
+      const payload = [...templates].map((v, i) => ({
+        code: v.code,
+        action: "CREATE",
+        positionAfter: i === 0 ? undefined : templates[i - 1].code,
+        dataChange: v.data,
+      }));
+
+      return await templateFetcher.createTemplateContent(params?.slug, {
+        isDraft: false,
+        content: payload,
+      });
+    },
+    onSuccess: async () => {
+      toast.success("Create template successfully");
+    },
+    onError: (error: string) => {
+      toast.error(error);
+    },
+  });
+
   return (
     <div className="min-h-screen">
       <div className="flex h-[72px] items-center justify-between border-b border-color-border px-4">
-        <h2 className=" text-xl font-semibold">{params?.slug}</h2>
+        <h2 className=" text-xl font-semibold">{searchParams.get("title")}</h2>
 
         <div className=" flex justify-center gap-x-2">
-          <ButtonCustom color="primary" className="w-fit">
-            Save
+          <ButtonCustom
+            color="primary"
+            className="flex w-fit justify-center"
+            onClick={() => handleSubmit()}
+            disabled={!!isPending}
+          >
+            {isPending ? <LoadingCircle /> : "Save"}
           </ButtonCustom>
         </div>
       </div>

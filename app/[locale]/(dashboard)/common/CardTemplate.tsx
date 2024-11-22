@@ -12,7 +12,7 @@ export function CardTemplate({
 }) {
   return (
     <Link
-      href={`templates/${template.title}`}
+      href={`templates/${template.id}?title=${template.title}`}
       className={classNames("flex cursor-pointer flex-col", className)}
     >
       <div className="flex-grow rounded border border-color-border transition-all hover:bg-black hover:opacity-20"></div>

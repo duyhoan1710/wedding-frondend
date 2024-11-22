@@ -7,7 +7,7 @@ import { CardTemplate } from "../common/CardTemplate";
 export default function TemplatesPage() {
   const [filter, setFilter] = useState({
     page: 1,
-    limit: 10,
+    limit: 100,
     isTemplateSample: false,
   });
 

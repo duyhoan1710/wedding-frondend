@@ -67,7 +67,7 @@ export default function AddressV1(props: IAddressV1) {
             src={getImage(props.backgroundRight)}
             alt=""
             fill
-            style={{ objectFit: "fill" }}
+            style={{ objectFit: "cover" }}
           />
         </div>
       </div>
@@ -175,7 +175,7 @@ export default function AddressV1(props: IAddressV1) {
           </div>
         </div>
       </div>
-      <div className="absolute top-0 bottom-0 left-0 right-0 bg-black opacity-40" />
+      <div className="absolute top-0 bottom-0 left-0 right-0 bg-black opacity-30" />
     </div>
   );
 }

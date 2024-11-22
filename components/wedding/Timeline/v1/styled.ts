@@ -43,7 +43,7 @@ export const TimelineStyled = styled.div<TimelineProps>`
       `}
 
     ${(props) =>
-      props.width >= 768 &&
+      props.width >= 1024 &&
       `
       border-top: unset;
       border-right: unset;

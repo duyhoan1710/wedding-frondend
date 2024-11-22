@@ -1,3 +1,5 @@
+"use client";
+
 import SortableItem from "@/components/common/Dnd/SortableItem";
 import {
   SortableContext,
@@ -14,7 +16,7 @@ export function PreviewTemplate({
   selectedComponentId,
 }: {
   templates: ITemplate[];
-  setNodeRef: (element: HTMLElement | null) => void;
+  setNodeRef?: (element: HTMLElement | null) => void;
   selectedComponentId?: string;
 }) {
   return (
@@ -30,31 +32,28 @@ export function PreviewTemplate({
           "w-full rounded border border-color-border",
         )}
       >
-        <FadeInSection>
-          {templates.map(({ id, code }) => (
-            <SortableItem key={id} id={id} code={code}>
-              {(() => {
-                const { Component } = findComponentByCode(code);
+        {templates.map(({ id, code }) => (
+          <SortableItem key={id} id={id} code={code}>
+            {(() => {
+              const { Component } = findComponentByCode(code);
 
-                const props = templates.find(
-                  (template) => template.code === code,
-                )!.data as any;
+              const props = templates.find(
+                (template) => template.code === code,
+              )!.data as any;
 
-                return (
-                  <div
-                    className={classNames(
-                      "m-2 h-fit rounded border border-gray-500",
-                      selectedComponentId === id &&
-                        "!border-2 !border-green-500",
-                    )}
-                  >
-                    <Component {...props} />
-                  </div>
-                );
-              })()}
-            </SortableItem>
-          ))}
-        </FadeInSection>
+              return (
+                <div
+                  className={classNames(
+                    "m-2 h-fit rounded border border-gray-500",
+                    selectedComponentId === id && "!border-2 !border-green-500",
+                  )}
+                >
+                  <Component {...props} />
+                </div>
+              );
+            })()}
+          </SortableItem>
+        ))}
       </div>
     </SortableContext>
   );
