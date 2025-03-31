@@ -1,20 +1,19 @@
 "use client";
 
-import { findComponentByCode } from "../(dashboard)/templates/[slug]/ListComponents";
-import { ITemplate } from "../(dashboard)/templates/[slug]/page";
+import { findComponent } from "@/components/wedding";
+import { ITemplate } from "@/components/wedding/interface";
 
-export function TemplateBody({ templates }: { templates: ITemplate[] }) {
+export function TemplateBody({ template }: { template: ITemplate }) {
   return (
     <div className="flex  flex-col items-center justify-center">
-      {templates.map(({ id, code }) => (
+      {template.components.map(({ code, data }) => (
         <>
           {(() => {
-            const { Component } = findComponentByCode(code);
+            const c = findComponent(template.version, code);
 
-            const props = templates.find((template) => template.code === code)!
-              .data as any;
+            if (!c) return <></>;
 
-            return <Component {...props} />;
+            return <c.Component props={data as any} />;
           })()}
         </>
       ))}

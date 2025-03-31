@@ -1,29 +1,8 @@
 "use client";
 
 import { ButtonCustom } from "@/components/common/Button";
-import { WeddingComponent, findComponentByCode } from "./ListComponents";
-import {
-  DndContext,
-  DragEndEvent,
-  DragOverEvent,
-  KeyboardSensor,
-  PointerSensor,
-  closestCenter,
-  useDroppable,
-  useSensor,
-  useSensors,
-} from "@dnd-kit/core";
 import { useEffect, useMemo, useState } from "react";
-import { arrayMove, sortableKeyboardCoordinates } from "@dnd-kit/sortable";
 
-import { EComponentCode } from "@/lib/enum";
-import { IBannerV1 } from "@/components/wedding/Banner/v1";
-import { IForeWordV1 } from "@/components/wedding/Foreword/v1";
-import { ITimelineV1 } from "@/components/wedding/Timeline/v1";
-import { IImagesV1 } from "@/components/wedding/Images/v1";
-import { IAddressV1 } from "@/components/wedding/Address/v1";
-import { IBankAccountV1 } from "@/components/wedding/BankAccount/v1";
-import { IFooterV1 } from "@/components/wedding/Footer/v1";
 import { PreviewTemplate } from "./PreviewTemplate";
 import { PreviewTemplateProvider } from "./PreviewTemplateProvider";
 import { useParams, useSearchParams } from "next/navigation";
@@ -31,45 +10,10 @@ import classNames from "classnames";
 import { useMutation } from "@tanstack/react-query";
 import * as templateFetcher from "@/lib/fetchers/templates";
 import { toast } from "react-toastify";
-import { LoadingCircle } from "@/components/icons";
+import { LoadingCircle } from "@/assets/icons";
 import { useTemplate } from "@/lib/hooks/queries/useTemplates";
-
-export type ITemplate =
-  | {
-      id: number | string;
-      code: EComponentCode.BANNER_V1;
-      data: IBannerV1;
-    }
-  | {
-      id: number | string;
-      code: EComponentCode.FOREWORD_V1;
-      data: IForeWordV1;
-    }
-  | {
-      id: number | string;
-      code: EComponentCode.ADDRESS_V1;
-      data: IAddressV1;
-    }
-  | {
-      id: number | string;
-      code: EComponentCode.TIMELINE_V1;
-      data: ITimelineV1;
-    }
-  | {
-      id: number | string;
-      code: EComponentCode.IMAGES_V1;
-      data: IImagesV1;
-    }
-  | {
-      id: number | string;
-      code: EComponentCode.BANK_ACCOUNT_v1;
-      data: IBankAccountV1;
-    }
-  | {
-      id: number | string;
-      code: EComponentCode.FOOTER_V1;
-      data: IFooterV1;
-    };
+import { IComponent } from "@/components/wedding/interface";
+import { findComponent } from "@/components/wedding";
 
 export default function TemplateDetail() {
   const params = useParams();
@@ -77,145 +21,41 @@ export default function TemplateDetail() {
 
   const { data: templateDetail } = useTemplate(params.slug);
 
-  const [selectedComponentId, setSelectedComponentId] =
-    useState<EComponentCode>();
+  const [selectedComponentCode, setSelectedComponentCode] = useState<string>();
 
-  const [templates, setTemplates] = useState<ITemplate[]>([]);
+  const [components, setComponents] = useState<IComponent[]>([]);
 
   useEffect(() => {
     if (templateDetail) {
       let contentTemp = [...templateDetail.content];
 
-      setTemplates(
-        templateDetail.content.map(
-          (v: { code: EComponentCode; dataChange: any }) => ({
-            id: v.code,
-            code: v.code,
-            data: v.dataChange,
-          }),
-        ),
+      setComponents(
+        contentTemp.map((v: { code: any; dataChange: any }) => ({
+          code: v.code,
+          data: v.dataChange,
+        })),
       );
+
+      setSelectedComponentCode(contentTemp[0].code);
     }
   }, [templateDetail]);
 
   const [isPC, setIsPC] = useState(true);
 
-  const { setNodeRef } = useDroppable({
-    id: "preview",
-  });
+  const EditorComponent = useMemo(() => {
+    if (!selectedComponentCode || !templateDetail) return;
 
-  const sensors = useSensors(
-    useSensor(PointerSensor),
-    useSensor(KeyboardSensor, {
-      coordinateGetter: sortableKeyboardCoordinates,
-    }),
-  );
+    const c = findComponent(templateDetail.version, selectedComponentCode);
 
-  function handleDragOver(event: DragOverEvent) {
-    const { active, over, activatorEvent } = event as any;
-
-    if (!active || !over) return;
-
-    const { id: activeId, data: activeData } = active;
-    const { id: overId, data: overData } = over;
-
-    if (
-      activeData?.current?.sortable?.containerId ===
-        overData?.current?.sortable?.containerId ||
-      (activeData?.current?.sortable?.containerId === "preview" &&
-        ["components", undefined].includes(
-          overData?.current?.sortable?.containerId,
-        ))
-    ) {
-      return;
-    }
-
-    setTemplates((pre: ITemplate[]) => {
-      const overItems = [...pre];
-
-      const overIndex = [...overItems].map(({ id }) => id).indexOf(overId);
-
-      const isBelowLastItem =
-        over &&
-        overIndex === overItems.length - 1 &&
-        activatorEvent?.clientY > over.rect.offsetTop + over.rect.height;
-
-      const modifier = isBelowLastItem ? 1 : 0;
-
-      const newIndex =
-        overIndex >= 0 ? overIndex + modifier : overItems.length + 1;
-
-      const { defaultData } = findComponentByCode(activeId);
-
-      overItems.splice(newIndex, 0, {
-        id: activeId,
-        code: activeId,
-        data: defaultData,
-      } as ITemplate);
-
-      return overItems;
-    });
-    setSelectedComponentId(activeId);
-  }
-
-  function handleDragEnd(event: DragEndEvent) {
-    const { active, over } = event as any;
-
-    if (!active || !over) return;
-
-    const { id: activeId, data: activeData } = active;
-    const { id: overId, data: overData } = over;
-
-    if (
-      activeData?.current?.sortable?.containerId !==
-      overData?.current?.sortable?.containerId
-    ) {
-      return;
-    }
-
-    if (activeData?.current?.sortable?.containerId === "components") {
-      setTemplates((pre: ITemplate[]) => {
-        const overItems = [...pre];
-
-        const { defaultData } = findComponentByCode(activeId);
-
-        overItems.push({
-          id: activeId,
-          code: activeId,
-          data: defaultData,
-        } as ITemplate);
-
-        return overItems;
-      });
-      setSelectedComponentId(activeData.current.code);
-      return;
-    }
-
-    setTemplates((pre: ITemplate[]) => {
-      const overItems = [...pre];
-
-      const activeIndex = [...overItems].map(({ id }) => id).indexOf(activeId);
-      const overIndex = [...overItems].map(({ id }) => id).indexOf(overId);
-
-      return arrayMove(overItems, activeIndex, overIndex);
-    });
-    setSelectedComponentId(activeData.current.code);
-  }
-
-  function handleDragStart(event: DragEndEvent) {}
-
-  const EditerComponent = useMemo(() => {
-    if (!selectedComponentId) return;
-
-    return findComponentByCode(selectedComponentId)?.EditerComponent;
-  }, [selectedComponentId]);
+    return c ? c.EditorComponent : undefined;
+  }, [selectedComponentCode, templateDetail]);
 
   const { mutate: handleSubmit, isPending } = useMutation({
     mutationFn: async () => {
-      const payload = [...templates].map((v, i) => ({
+      const payload = components.map((v, i) => ({
         code: v.code,
         action: "CREATE",
-        positionAfter: i === 0 ? undefined : templates[i - 1].code,
+        positionAfter: i === 0 ? undefined : components[i - 1].code,
         dataChange: v.data,
       }));
 
@@ -251,68 +91,58 @@ export default function TemplateDetail() {
 
       <div className="flex">
         <div className="flex flex-grow ">
-          <DndContext
-            onDragEnd={handleDragEnd}
-            onDragOver={handleDragOver}
-            onDragStart={handleDragStart}
-            sensors={sensors}
-            collisionDetection={closestCenter}
-          >
-            <div className="h-[calc(100vh-72px)] min-w-[235px] flex-col overflow-x-hidden overflow-y-scroll border-r border-color-border p-2 md:w-1/3 lg:w-1/5 2xl:min-w-[324px]">
-              <WeddingComponent />
+          <div className="flex grow flex-col items-center justify-center">
+            <div className="flex h-[40px] gap-x-2 py-2">
+              <ButtonCustom
+                onClick={() => setIsPC(false)}
+                className="h-auto"
+                variant={isPC ? "bordered" : undefined}
+              >
+                Mobile
+              </ButtonCustom>
+              <ButtonCustom
+                onClick={() => setIsPC(true)}
+                className="h-auto"
+                variant={!isPC ? "bordered" : undefined}
+              >
+                PC
+              </ButtonCustom>
             </div>
 
-            <div className="flex grow flex-col items-center justify-center">
-              <div className="flex h-[40px] gap-x-2 py-2">
-                <ButtonCustom
-                  onClick={() => setIsPC(false)}
-                  className="h-auto"
-                  variant={isPC ? "bordered" : undefined}
-                >
-                  Mobile
-                </ButtonCustom>
-                <ButtonCustom
-                  onClick={() => setIsPC(true)}
-                  className="h-auto"
-                  variant={!isPC ? "bordered" : undefined}
-                >
-                  PC
-                </ButtonCustom>
-              </div>
-
-              <div
-                className={classNames(
-                  "no-scrollbar flex h-[calc(100vh-112px)] grow overflow-y-scroll px-8 pb-2 transition-width",
-                  isPC ? "w-full" : "w-[390px]",
-                )}
-              >
+            <div
+              className={classNames(
+                "no-scrollbar flex h-[calc(100vh-112px)] grow overflow-y-scroll px-8 pb-2 transition-width",
+                isPC ? "w-full" : "w-[390px]",
+              )}
+            >
+              {templateDetail?.version && (
                 <PreviewTemplateProvider>
                   <PreviewTemplate
-                    templates={templates}
-                    setNodeRef={setNodeRef}
-                    selectedComponentId={selectedComponentId}
+                    version={templateDetail?.version}
+                    components={components}
+                    setSelectedComponentCode={setSelectedComponentCode}
+                    selectedComponentCode={selectedComponentCode}
                   />
                 </PreviewTemplateProvider>
-              </div>
+              )}
             </div>
-          </DndContext>
+          </div>
         </div>
 
         <div className="flex w-1/4 min-w-[300px] flex-col border-l border-color-border lg:w-1/5">
           <div className="h-[calc(100vh-72px)] flex-grow overflow-y-scroll p-4">
-            {EditerComponent &&
-              selectedComponentId &&
-              templates.find(
-                (template) => template?.id === selectedComponentId,
+            {EditorComponent &&
+              selectedComponentCode &&
+              components.find(
+                (component) => component?.code === selectedComponentCode,
               ) && (
-                <EditerComponent
-                  code={selectedComponentId}
+                <EditorComponent
                   data={
-                    templates.find(
-                      (template) => template?.id === selectedComponentId,
+                    components.find(
+                      (component) => component?.code === selectedComponentCode,
                     )!.data as any
                   }
-                  setData={setTemplates}
+                  setData={setComponents as any}
                 />
               )}
           </div>

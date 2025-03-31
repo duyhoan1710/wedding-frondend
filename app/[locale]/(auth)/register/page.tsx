@@ -11,7 +11,7 @@ import * as fetcher from "@/lib/fetchers";
 import { InputCustom } from "@/components/common/Input";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
-import { LoadingCircle } from "@/components/icons";
+import { LoadingCircle } from "@/assets/icons";
 
 export default function Register(): JSX.Element {
   const router = useRouter();

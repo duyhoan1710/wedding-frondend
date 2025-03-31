@@ -1,6 +1,6 @@
 "use client";
 
-import { LoadingCircle } from "@/components/icons";
+import { LoadingCircle } from "@/assets/icons";
 import { uploadImage } from "@/lib/fetchers/media";
 import { getImage, trimDomain } from "@/lib/utils";
 import { useMutation } from "@tanstack/react-query";

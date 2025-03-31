@@ -9,7 +9,7 @@ export const WidthContext = createContext<{
 });
 
 export function PreviewTemplateProvider({ children }: { children: ReactNode }) {
-  const childRef = useRef(null);
+  const childRef = useRef<any>(null);
   const [width, setWidth] = useState<number>(0);
 
   useEffect(() => {

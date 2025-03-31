@@ -1,31 +1,37 @@
-// import AttendForm from "@/components/weddingTemplate/v1/AttendForm";
-
-import { DEFAULT_DATA_BANK_ACCOUNT_V1 } from "../../components/wedding/BankAccount/v1";
-import { DEFAULT_DATA_BANNER_V1 } from "../../components/wedding/Banner/v1";
-import { DEFAULT_DATA_FOREWORD_V1 } from "../../components/wedding/Foreword/v1";
-import { DEFAULT_DATA_IMAGES_V1 } from "../../components/wedding/Images/v1";
-import { DEFAULT_DATA_TIMELINE_V1 } from "../../components/wedding/Timeline/v1";
-import { DEFAULT_DATA_ADDRESS_V1 } from "../../components/wedding/Address/v1";
-import BannerV1 from "../../components/wedding/Banner/v1";
-import ForewordV1 from "../../components/wedding/Foreword/v1";
-import AddressV1 from "../../components/wedding/Address/v1";
-import TimelineV1 from "../../components/wedding/Timeline/v1";
-import ImagesV1 from "../../components/wedding/Images/v1";
-import BankAccountV1 from "../../components/wedding/BankAccount/v1";
-import FooterV1 from "../../components/wedding/Footer/v1";
+import Address, {
+  DEFAULT_DATA_ADDRESS,
+} from "@/components/wedding/v1/components/Address";
+import BankAccount, {
+  DEFAULT_DATA_BANK_ACCOUNT,
+} from "@/components/wedding/v1/components/BankAccount";
+import Banner, {
+  DEFAULT_DATA_BANNER,
+} from "@/components/wedding/v1/components/Banner";
+import Footer, {
+  DEFAULT_DATA_FOOTER,
+} from "@/components/wedding/v1/components/Footer";
+import Foreword, {
+  DEFAULT_DATA_FOREWORD,
+} from "@/components/wedding/v1/components/Foreword";
+import Images, {
+  DEFAULT_DATA_IMAGES,
+} from "@/components/wedding/v1/components/Images";
+import Timeline, {
+  DEFAULT_DATA_TIMELINE,
+} from "@/components/wedding/v1/components/Timeline";
 
 export default async function Home() {
   return (
     <div className="flex flex-col items-center justify-center">
       {/* <Nav /> */}
-      <BannerV1 {...DEFAULT_DATA_BANNER_V1} />
-      <ForewordV1 {...DEFAULT_DATA_FOREWORD_V1} />
-      <AddressV1 {...DEFAULT_DATA_ADDRESS_V1} />
-      <TimelineV1 {...DEFAULT_DATA_TIMELINE_V1} />
-      <ImagesV1 {...DEFAULT_DATA_IMAGES_V1} />
-      <BankAccountV1 {...DEFAULT_DATA_BANK_ACCOUNT_V1} />
+      <Banner props={DEFAULT_DATA_BANNER} />
+      <Foreword props={DEFAULT_DATA_FOREWORD} />
+      <Address props={DEFAULT_DATA_ADDRESS} />
+      <Timeline props={DEFAULT_DATA_TIMELINE} />
+      <Images props={DEFAULT_DATA_IMAGES} />
+      <BankAccount props={DEFAULT_DATA_BANK_ACCOUNT} />
       {/* <AttendForm /> */}
-      <FooterV1 />
+      <Footer props={DEFAULT_DATA_FOOTER} />
     </div>
   );
 }

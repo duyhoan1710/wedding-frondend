@@ -11,7 +11,7 @@ import { useMutation } from "@tanstack/react-query";
 
 import { setAccessToken } from "@/lib/helpers/localStorage";
 import { useRouter } from "next/navigation";
-import { LoadingCircle } from "@/components/icons";
+import { LoadingCircle } from "@/assets/icons";
 import { login } from "@/lib/fetchers";
 
 export default function Login(): JSX.Element {

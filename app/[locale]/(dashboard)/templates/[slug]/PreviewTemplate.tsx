@@ -1,60 +1,49 @@
 "use client";
 
-import SortableItem from "@/components/common/Dnd/SortableItem";
-import {
-  SortableContext,
-  verticalListSortingStrategy,
-} from "@dnd-kit/sortable";
 import classNames from "classnames";
-import { findComponentByCode } from "./ListComponents";
-import { ITemplate } from "./page";
-import FadeInSection from "@/components/common/FadeInSection";
+import { EVersion } from "@/lib/enum";
+import { findComponent } from "@/components/wedding";
+import { IComponent } from "@/components/wedding/interface";
 
 export function PreviewTemplate({
-  templates,
-  setNodeRef,
-  selectedComponentId,
+  version,
+  components,
+  selectedComponentCode,
+  setSelectedComponentCode,
 }: {
-  templates: ITemplate[];
-  setNodeRef?: (element: HTMLElement | null) => void;
-  selectedComponentId?: string;
+  version: EVersion;
+  components: IComponent[];
+  selectedComponentCode?: string;
+  setSelectedComponentCode: (value: string) => void;
 }) {
   return (
-    <SortableContext
-      id="preview"
-      items={templates}
-      strategy={verticalListSortingStrategy}
+    <div
+      className={classNames(
+        !components.length ? "h-full" : "h-fit",
+        "w-full rounded border border-color-border",
+      )}
     >
-      <div
-        ref={setNodeRef}
-        className={classNames(
-          !templates.length ? "h-full" : "h-fit",
-          "w-full rounded border border-color-border",
-        )}
-      >
-        {templates.map(({ id, code }) => (
-          <SortableItem key={id} id={id} code={code}>
-            {(() => {
-              const { Component } = findComponentByCode(code);
+      {components.map(({ code, data }) => (
+        <div key={code} onClick={() => setSelectedComponentCode(code)}>
+          {(() => {
+            const c = findComponent(version, code);
 
-              const props = templates.find(
-                (template) => template.code === code,
-              )!.data as any;
+            if (!c) return <></>;
 
-              return (
-                <div
-                  className={classNames(
-                    "m-2 h-fit rounded border border-gray-500",
-                    selectedComponentId === id && "!border-2 !border-green-500",
-                  )}
-                >
-                  <Component {...props} />
-                </div>
-              );
-            })()}
-          </SortableItem>
-        ))}
-      </div>
-    </SortableContext>
+            return (
+              <div
+                className={classNames(
+                  "m-2 h-fit rounded border border-gray-500",
+                  selectedComponentCode === code &&
+                    "!border-2 !border-green-500",
+                )}
+              >
+                <c.Component props={data as any} />
+              </div>
+            );
+          })()}
+        </div>
+      ))}
+    </div>
   );
 }

@@ -23,8 +23,6 @@ function request(method: "GET" | "POST" | "PUT" | "DELETE") {
       requestOptions.headers["Authorization"] = "Bearer " + getAccessToken();
     }
 
-    console.log(body, "--------------------------");
-
     if (body) {
       if (body instanceof FormData) {
         requestOptions.body = body;

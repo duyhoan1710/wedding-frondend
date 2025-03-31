@@ -1,4 +1,4 @@
-import { EComponentCode } from "../enum";
+import { EVersion } from "../enum";
 import { fetchWrapper } from "../fetchWrapper";
 import { IListTemplatesResponse } from "../interfaces/templates";
 
@@ -25,9 +25,9 @@ export const createTemplateContent = (
   payload: {
     isDraft: boolean;
     content: {
-      code: EComponentCode;
+      code: string;
       action: string;
-      positionAfter?: EComponentCode;
+      positionAfter?: string;
       dataChange?: { [x: string]: any };
     }[];
   },
@@ -38,8 +38,8 @@ export const createTemplateContent = (
 export const getTemplate = (templateId: string) => {
   return fetchWrapper.get<{
     title: string;
-    version: string;
-    content: { code: EComponentCode; dataChange: any }[];
+    version: EVersion;
+    content: { code: string; dataChange: any }[];
     updatedAt: Date;
   }>(`templates/${templateId}`);
 };
@@ -47,8 +47,8 @@ export const getTemplate = (templateId: string) => {
 export const getTemplateByTitle = (title: string) => {
   return fetchWrapper.get<{
     title: string;
-    version: string;
-    content: { code: EComponentCode; dataChange: any }[];
+    version: EVersion;
+    content: { code: string; dataChange: any }[];
     updatedAt: Date;
   }>(`templates/title/${title}`, undefined, { public: true });
 };

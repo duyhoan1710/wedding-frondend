@@ -25,12 +25,6 @@ export const truncate = (str: string, length: number) => {
 
 export const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
-export const getImage = (url: string) => {
-  if (!url) return "";
-
-  return process.env.NEXT_PUBLIC_SERVER_IMAGE + "/" + url;
-};
-
 export const trimDomain = (url: string) => {
   return url.split(`${process.env.NEXT_PUBLIC_SERVER_IMAGE}/`)[1];
 };
@@ -59,3 +53,18 @@ export function formatDate(
 ): string {
   return dayjs(date).format(format || "YYYY-MM-DDTHH:mm:ss.sssZ");
 }
+
+export const getImage = (path: string): string => {
+  if (!path) return '';
+  if (path.startsWith('http')) return path;
+  return `/assets/sample_wedding_img/v1/${path}`;
+};
+
+export const validateImage = (file: File): Promise<boolean> => {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.onload = () => resolve(true);
+    img.onerror = () => resolve(false);
+    img.src = URL.createObjectURL(file);
+  });
+};
