@@ -64,7 +64,7 @@ export function TimelineEditor(props: {
         return template;
       });
     });
-  }, [getValues, props]);
+  }, [JSON.stringify(getValues())]);
 
   const addItem = () => {
     const timelines = getValues().timelines;

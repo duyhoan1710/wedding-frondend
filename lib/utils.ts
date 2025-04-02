@@ -55,9 +55,9 @@ export function formatDate(
 }
 
 export const getImage = (path: string): string => {
-  if (!path) return '';
-  if (path.startsWith('http')) return path;
-  return `/assets/sample_wedding_img/v1/${path}`;
+  if (!path) return "";
+  if (path.startsWith("http")) return path;
+  return `${process.env.NEXT_PUBLIC_SERVER_IMAGE}/${path}`;
 };
 
 export const validateImage = (file: File): Promise<boolean> => {

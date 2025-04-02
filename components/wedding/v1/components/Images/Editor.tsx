@@ -46,7 +46,7 @@ export function ImagesEditor(props: {
         return template;
       });
     });
-  }, [getValues, props]);
+  }, [JSON.stringify(getValues())]);
 
   return (
     <div>

@@ -47,7 +47,7 @@ export function BannerEditor(props: {
         return template;
       });
     });
-  }, [getValues, props]);
+  }, [JSON.stringify(getValues())]);
 
   return (
     <div>

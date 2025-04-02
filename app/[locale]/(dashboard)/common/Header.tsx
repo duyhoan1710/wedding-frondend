@@ -20,6 +20,7 @@ import { InputCustom } from "@/components/common/Input";
 
 import * as templateFetcher from "@/lib/fetchers/templates";
 import { LIST_TEMPLATE_KEY } from "@/lib/hooks/queries/useTemplates";
+import { EVersion } from "@/lib/enum";
 
 export const Header = ({
   isDisplayCreateNewTemplate,
@@ -32,6 +33,7 @@ export const Header = ({
 
   const schema = yup.object().shape({
     title: yup.string().required("Required field"),
+    version: yup.string().oneOf(Object.values(EVersion), "Invalid version"),
   });
 
   const {
@@ -45,7 +47,8 @@ export const Header = ({
   });
 
   const { mutate: onSubmit, isPending } = useMutation({
-    mutationFn: () => templateFetcher.createTemplate(getValues()),
+    mutationFn: () =>
+      templateFetcher.createTemplate({ ...getValues(), version: EVersion.V1 }),
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: [LIST_TEMPLATE_KEY] });
       toast.success("Create template successfully");

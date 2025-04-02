@@ -28,26 +28,7 @@
   }
 
   .animate-box {
-    visibility: hidden;
-  }
-
-  .mySwiper {
-    width: 280px;
-    height: 400px;
-  }
-
-  @media only screen and (min-width: 768px) {
-    .mySwiper {
-      width: 350px;
-      height: 500px;
-    }
-  }
-
-  @media only screen and (min-width: 1024px) {
-    .mySwiper {
-      width: 400px;
-      height: 580px;
-    }
+    visibility: visible;
   }
 
   div::-webkit-scrollbar-track {

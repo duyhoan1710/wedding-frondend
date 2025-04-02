@@ -16,23 +16,24 @@ export const getTemplates = async ({
   );
 };
 
-export const createTemplate = (payload: { title: string }) => {
+export const createTemplate = (payload: {
+  title: string;
+  version: EVersion;
+}) => {
   return fetchWrapper.post(`templates`, payload);
 };
 
-export const createTemplateContent = (
+export const updateTemplate = (
   templateId: string,
   payload: {
-    isDraft: boolean;
-    content: {
+    title?: string;
+    content?: {
       code: string;
-      action: string;
-      positionAfter?: string;
       dataChange?: { [x: string]: any };
     }[];
   },
 ) => {
-  return fetchWrapper.put(`templates/${templateId}/content`, payload);
+  return fetchWrapper.put(`templates/${templateId}`, payload);
 };
 
 export const getTemplate = (templateId: string) => {

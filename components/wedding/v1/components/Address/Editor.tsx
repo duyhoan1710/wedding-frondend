@@ -52,7 +52,7 @@ export function AddressEditor(props: {
         return template;
       });
     });
-  }, [getValues, props]);
+  }, [JSON.stringify(getValues())]);
 
   return (
     <div>

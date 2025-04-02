@@ -14,6 +14,8 @@ import { LoadingCircle } from "@/assets/icons";
 import { useTemplate } from "@/lib/hooks/queries/useTemplates";
 import { IComponent } from "@/components/wedding/interface";
 import { findComponent } from "@/components/wedding";
+import { TEMPLATES_V1 } from "@/components/wedding/v1/components";
+import { EVersion } from "@/lib/enum";
 
 export default function TemplateDetail() {
   const params = useParams();
@@ -26,29 +28,40 @@ export default function TemplateDetail() {
   const [components, setComponents] = useState<IComponent[]>([]);
 
   useEffect(() => {
-    if (templateDetail) {
-      let contentTemp = [...templateDetail.content];
-
+    if (templateDetail && templateDetail.content.length) {
       setComponents(
-        contentTemp.map((v: { code: any; dataChange: any }) => ({
+        templateDetail.content.map((v: { code: any; dataChange: any }) => ({
           code: v.code,
           data: v.dataChange,
         })),
       );
 
-      setSelectedComponentCode(contentTemp[0].code);
+      setSelectedComponentCode(templateDetail.content[0].code);
+    } else {
+      setComponents(TEMPLATES_V1);
+      setSelectedComponentCode(TEMPLATES_V1[0].code);
     }
   }, [templateDetail]);
 
+  console.log(components);
+
   const [isPC, setIsPC] = useState(true);
 
-  const EditorComponent = useMemo(() => {
-    if (!selectedComponentCode || !templateDetail) return;
+  // const EditorComponent = useMemo(() => {
+  //   if (!selectedComponentCode || !templateDetail) return;
 
-    const c = findComponent(templateDetail.version, selectedComponentCode);
+  //   const c = findComponent(templateDetail.version, selectedComponentCode);
+
+  //   return c ? c.EditorComponent : undefined;
+  // }, [selectedComponentCode, templateDetail]);
+
+  const EditorComponent = useMemo(() => {
+    if (!selectedComponentCode) return;
+
+    const c = findComponent(EVersion.V1, selectedComponentCode);
 
     return c ? c.EditorComponent : undefined;
-  }, [selectedComponentCode, templateDetail]);
+  }, [selectedComponentCode]);
 
   const { mutate: handleSubmit, isPending } = useMutation({
     mutationFn: async () => {
@@ -59,8 +72,7 @@ export default function TemplateDetail() {
         dataChange: v.data,
       }));
 
-      return await templateFetcher.createTemplateContent(params?.slug, {
-        isDraft: false,
+      return await templateFetcher.updateTemplate(params?.slug, {
         content: payload,
       });
     },
@@ -115,10 +127,10 @@ export default function TemplateDetail() {
                 isPC ? "w-full" : "w-[390px]",
               )}
             >
-              {templateDetail?.version && (
+              {components.length && (
                 <PreviewTemplateProvider>
                   <PreviewTemplate
-                    version={templateDetail?.version}
+                    version={EVersion.V1}
                     components={components}
                     setSelectedComponentCode={setSelectedComponentCode}
                     selectedComponentCode={selectedComponentCode}
