@@ -67,8 +67,6 @@ export default function TemplateDetail() {
     mutationFn: async () => {
       const payload = components.map((v, i) => ({
         code: v.code,
-        action: "CREATE",
-        positionAfter: i === 0 ? undefined : components[i - 1].code,
         dataChange: v.data,
       }));
 

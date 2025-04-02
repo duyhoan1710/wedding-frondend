@@ -28,7 +28,7 @@
   }
 
   .animate-box {
-    visibility: visible;
+    visibility: hidden;
   }
 
   div::-webkit-scrollbar-track {

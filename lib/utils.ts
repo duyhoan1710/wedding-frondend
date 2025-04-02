@@ -2,7 +2,6 @@ import dayjs from "dayjs";
 import "dayjs/locale/vi";
 
 import ms from "ms";
-import { StaticImageData } from "next/image";
 
 dayjs.locale("vi");
 
@@ -56,7 +55,9 @@ export function formatDate(
 
 export const getImage = (path: string): string => {
   if (!path) return "";
+
   if (path.startsWith("http")) return path;
+
   return `${process.env.NEXT_PUBLIC_SERVER_IMAGE}/${path}`;
 };
 

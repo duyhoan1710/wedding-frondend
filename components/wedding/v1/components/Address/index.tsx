@@ -99,7 +99,7 @@ export default function Address({ props }: { props: IAddress }) {
                   THỜI GIAN
                 </div>
                 <div className="text-sm font-semibold leading-relaxed text-dark-red">
-                  <p>{formatDateString(props.wifeDatetime, "HH:mma")}</p>
+                  <p>{formatDateString(props.wifeDatetime, "HH:mm a")}</p>
                   <p className=" capitalize">
                     {formatDateString(
                       props.wifeDatetime,
@@ -115,7 +115,7 @@ export default function Address({ props }: { props: IAddress }) {
                 </div>
                 <div>
                   <div className="text-sm font-semibold leading-relaxed text-dark-red">
-                    <p className=" whitespace-pre">{props.wifeAddress}</p>
+                    <p className=" whitespace-pre-line">{props.wifeAddress}</p>
                   </div>
                   {props.wifeGoogleMapAddress && (
                     <Link
@@ -142,7 +142,7 @@ export default function Address({ props }: { props: IAddress }) {
                   THỜI GIAN
                 </div>
                 <div className="text-sm font-semibold leading-relaxed text-dark-red">
-                  <p>{formatDateString(props.husbandDatetime, "HH:mma")}</p>
+                  <p>{formatDateString(props.husbandDatetime, "HH:mm a")}</p>
                   <p className=" capitalize">
                     {formatDateString(
                       props.husbandDatetime,
@@ -158,7 +158,9 @@ export default function Address({ props }: { props: IAddress }) {
                 </div>
                 <div>
                   <div className="text-sm font-semibold leading-relaxed text-dark-red">
-                    <p className=" whitespace-pre">{props.husbandAddress}</p>
+                    <p className=" whitespace-pre-line">
+                      {props.husbandAddress}
+                    </p>
                   </div>
                   {props.husbandGoogleMapAddress && (
                     <Link
@@ -175,7 +177,7 @@ export default function Address({ props }: { props: IAddress }) {
           </div>
         </div>
       </div>
-      <div className="absolute top-0 bottom-0 left-0 right-0 bg-black opacity-30" />
+      <div className="absolute top-0 bottom-0 left-0 right-0 bg-black opacity-20" />
     </div>
   );
 }
